@@ -7,3 +7,6 @@ npx create-react-app my-app
 Recommended extension for generating react components
 ES7/React/Redux snippets
 -> rce TAB to generate a compnent structure in a file
+
+Component drilling
+Passing data from a component all the way up to the top level
