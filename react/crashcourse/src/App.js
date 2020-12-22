@@ -55,17 +55,7 @@ class App extends Component {
       console.log(existingIds);
       return 1;
     } else {
-      console.log(existingIds);
-      let next;
-      console.log(next);
-      for (let i = 1; i <= existingIds[existingIds.length - 1]; i++) {
-        if (existingIds.indexOf(i) === -1) {
-          console.log(i);
-          next = i;
-        }
-      }
-      //return existingIds[existingIds.length - 1] + 1;
-      return next;
+      return existingIds[existingIds.length - 1] + 1;
     }
   }
 
