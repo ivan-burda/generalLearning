@@ -4,28 +4,19 @@ import Header from "./components/layout/Header";
 import Todos from "./components/Todos.js";
 import AddTodo from "./components/AddTodo.js";
 import About from "./components/pages/About";
+import axios from "axios";
 import "./App.css";
 
 class App extends Component {
   state = {
-    todos: [
-      {
-        id: 1,
-        title: "Take out the trash",
-        completed: false,
-      },
-      {
-        id: 2,
-        title: "Dinner with wife",
-        completed: false,
-      },
-      {
-        id: 3,
-        title: "Meeting with boss",
-        completed: false,
-      },
-    ],
+    todos: [],
   };
+
+  componentDidMount() {
+    axios
+      .get("https://jsonplaceholder.typicode.com/todos?_limit=10")
+      .then((res) => this.setState({ todos: res.data }));
+  }
 
   //Toggle completion state of a todo
   markComplete = (id) => {
@@ -41,9 +32,13 @@ class App extends Component {
 
   //Delete a todo
   delTodo = (id) => {
-    this.setState({
-      todos: [...this.state.todos.filter((todo) => todo.id !== id)],
-    });
+    axios
+      .delete(`https://jsonplaceholder.typicode.com/todos/${id}`)
+      .then((res) =>
+        this.setState({
+          todos: [...this.state.todos.filter((todo) => todo.id !== id)],
+        })
+      );
   };
 
   //Get next id
@@ -61,13 +56,29 @@ class App extends Component {
 
   //Add a todo
   addTodo = (title) => {
-    const newTodo = {
-      id: this.getNextId(),
-      title,
-      completed: false,
-    };
+    // const newTodo = {
+    //   id: this.getNextId(),
+    //   title,
+    //   completed: false,
+    // };
 
-    this.setState({ todos: [...this.state.todos, newTodo] });
+    axios
+      .post("https://jsonplaceholder.typicode.com/todos", {
+        title: title,
+        completed: false,
+      })
+      .then((res) =>
+        this.setState({
+          todos: [
+            ...this.state.todos,
+            {
+              id: this.getNextId(),
+              title: res.data.title,
+              completed: res.data.completed,
+            },
+          ],
+        })
+      );
   };
 
   render() {
