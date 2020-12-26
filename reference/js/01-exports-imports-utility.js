@@ -7,3 +7,5 @@ export const greet2 = (name) => {
 };
 
 export const politeRemark = "Nice to meet you.";
+
+export const impoliteRemark = "Bugger off!";
