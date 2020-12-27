@@ -1,0 +1,9 @@
+1) Install node.js and npm
+2) sudo npm install create-react-app -g //install the create-react-app build globally
+3) create-react-app react-complete-guide --script-version 1.1.5 //crates a react project
+--i should be navigated into the folder where i want to create the project
+--react-complete-guidate is up to me, this is the name of the project
+-- "--script-vesion x.x.x" is used to create a file of a specific version; however, the latest react version gets installed regardless of this
+
+npm start
+- this starts a new npm server
