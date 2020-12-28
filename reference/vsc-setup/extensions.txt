@@ -1,0 +1,8 @@
+Bracket Pair Colorizer
+ES7 React/Redux snippets
+ESLint
+Javascript ES6 code snippets
+Live Server
+Material icon theme
+Prettier - Code formatter
+Prettify JSON
