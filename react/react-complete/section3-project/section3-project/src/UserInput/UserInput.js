@@ -7,6 +7,7 @@ const UserInput = (props) => {
     fontSize: "0.9rem",
     textAlign: "center",
   };
+  //Not needed at all to wrap a single element into a div. Wrapping into a div is recommended when returning more elements.
   return (
     <div>
       <input
