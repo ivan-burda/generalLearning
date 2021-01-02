@@ -39,6 +39,7 @@ class App extends Component {
             <CharComponent
               character={char.value}
               key={char.id}
+              id={char.id}
               click={this.deleteChar}
             />
           );

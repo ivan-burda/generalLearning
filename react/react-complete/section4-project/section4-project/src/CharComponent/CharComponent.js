@@ -9,7 +9,7 @@ const CharComponent = (props) => {
     border: "1px solid black",
   };
   return (
-    <div style={style} data-id={props.key} onClick={props.click}>
+    <div style={style} data-id={props.id} onClick={props.click}>
       {props.character}
     </div>
   );
