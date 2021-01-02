@@ -7,7 +7,13 @@ import CharComponent from "./CharComponent/CharComponent";
 class App extends Component {
   state = {
     textLength: null,
-    wordChars: [],
+    wordChars: [
+      { id: "1", value: "a" },
+      { id: "2", value: "d" },
+      { id: "3", value: "e" },
+      { id: "4", value: "l" },
+      { id: "5", value: "a" },
+    ],
   };
   textChanged = (event) => {
     document.getElementById("wordLength").innerText = event.target.value.length;
@@ -15,12 +21,29 @@ class App extends Component {
     this.setState({ wordChars: event.target.value.split("") });
   };
 
+  deleteChar = (event) => {
+    let charactersCopy = [...this.state.wordChars];
+    this.state.wordChars.forEach((char) => {
+      if (char.id === event.target.getAttribute("data-id")) {
+        charactersCopy.splice(this.state.wordChars.indexOf(char), 1);
+      }
+    });
+    this.setState({ wordChars: charactersCopy });
+  };
+
   render() {
     let displayChars = null;
     displayChars = (
       <div>
-        {this.state.wordChars.map((char, index) => {
-          return <CharComponent character={char} key={index} />;
+        {this.state.wordChars.map((char) => {
+          return (
+            <CharComponent
+              character={char.value}
+              key={char.id}
+              id={char.id}
+              click={this.deleteChar}
+            />
+          );
         })}
       </div>
     );
