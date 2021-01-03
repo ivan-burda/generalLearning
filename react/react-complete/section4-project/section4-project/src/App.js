@@ -29,6 +29,11 @@ class App extends Component {
       }
     });
     this.setState({ wordChars: wordCharsCopy });
+    let updatedInput = [];
+    wordCharsCopy.forEach((word) => {
+      updatedInput.push(word.value);
+    });
+    this.setState({ userInput: updatedInput.join("") });
   };
 
   render() {
