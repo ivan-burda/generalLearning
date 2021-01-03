@@ -1,16 +1,17 @@
 import React, { Component } from "react";
 import "./App.css";
 
-import ValidationComponent from "./ValidationComponent/ValidationComponent";
-import CharComponent from "./CharComponent/CharComponent";
+import Validation from "./Validation/Validation";
+import Char from "./Char/Char";
 
 class App extends Component {
   state = {
+    userInput: "",
     textLength: null,
     wordChars: [],
   };
   textChanged = (event) => {
-    document.getElementById("wordLength").innerText = event.target.value.length;
+    this.setState({ userInput: event.target.value });
     this.setState({ textLength: event.target.value.length });
     let chars = event.target.value.split("");
     let newWordChars = [];
@@ -36,7 +37,7 @@ class App extends Component {
       <div>
         {this.state.wordChars.map((char) => {
           return (
-            <CharComponent
+            <Char
               character={char.value}
               key={char.id}
               id={char.id}
@@ -49,9 +50,14 @@ class App extends Component {
 
     return (
       <div className="App">
-        <input id="wordInput" type="text" onChange={this.textChanged}></input>
+        <input
+          id="wordInput"
+          type="text"
+          onChange={this.textChanged}
+          value={this.state.userInput}
+        ></input>
         <p id="wordLength"></p>
-        <ValidationComponent textLength={this.state.textLength} />
+        <Validation textLength={this.state.textLength} />
         {displayChars}
       </div>
     );
