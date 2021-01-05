@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import Radium, { StyleRoot } from "radium";
 import Person from "./Person/Person";
 
 class App extends Component {
@@ -53,6 +54,10 @@ class App extends Component {
       padding: "6px",
       margin: "auto",
       cursor: "pointer",
+      ":hover": {
+        backgroundColor: "lightgreen",
+        color: "black",
+      },
     };
 
     let persons = null;
@@ -73,6 +78,10 @@ class App extends Component {
         </div>
       );
       style.backgroundColor = "red";
+      style[":hover"] = {
+        backgroundColor: "salmon",
+        color: "black",
+      };
     }
 
     const classes = [];
@@ -85,16 +94,18 @@ class App extends Component {
 
     return (
       //Notice the two approaches for dealing with an onClick (and similar) events. The second approach with .bind() is recommended because it is more resource-thrifty.
-      <div className="App">
-        <h1>Hello World from React!</h1>
-        <p className={classes.join(" ")}>This is really working!</p>
-        <button style={style} onClick={this.togglePersonsHandler}>
-          Toggle persons
-        </button>
-        {persons}
-      </div>
+      <StyleRoot>
+        <div className="App">
+          <h1>Hello World from React!</h1>
+          <p className={classes.join(" ")}>This is really working!</p>
+          <button style={style} onClick={this.togglePersonsHandler}>
+            Toggle persons
+          </button>
+          {persons}
+        </div>
+      </StyleRoot>
     );
   }
 }
 
-export default Apps;
+export default Radium(App);
