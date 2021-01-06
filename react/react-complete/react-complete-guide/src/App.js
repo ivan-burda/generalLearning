@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./App.css";
+import classes from "./App.css";
 import Person from "./Person/Person";
 
 class App extends Component {
@@ -45,21 +45,8 @@ class App extends Component {
   };
 
   render() {
-    const style = {
-      backgroundColor: "green",
-      color: "white",
-      font: "inherit",
-      border: "1px solid blue",
-      padding: "6px",
-      margin: "auto",
-      cursor: "pointer",
-      ":hover": {
-        backgroundColor: "lightgreen",
-        color: "black",
-      },
-    };
-
     let persons = null;
+    let btnClass = "";
     if (this.state.showPersons) {
       persons = (
         <div>
@@ -68,40 +55,33 @@ class App extends Component {
               <Person
                 name={person.name}
                 age={person.age}
-                click={() => this.deletePersonHandler(index)}
                 key={person.id}
+                click={() => this.deletePersonHandler(index)}
                 changed={(event) => this.nameChangedHandler(event, person.id)}
               />
             );
           })}
         </div>
       );
-      style.backgroundColor = "red";
-      style[":hover"] = {
-        backgroundColor: "salmon",
-        color: "black",
-      };
+      btnClass = classes.Red;
     }
 
-    const classes = [];
+    const assignedClassed = [];
     if (this.state.persons.length <= 2) {
-      classes.push("red"); // classes: ['red]
+      assignedClassed.push(classes.red); // classes: ['red]
     }
     if (this.state.persons.length <= 1) {
-      classes.push("bold"); //classes: ['red', 'bold]
+      assignedClassed.push(classes.bold); //classes: ['red', 'bold]
     }
 
     return (
       //Notice the two approaches for dealing with an onClick (and similar) events. The second approach with .bind() is recommended because it is more resource-thrifty.
-      <div className="App">
+      <div className={classes.App}>
         <h1>Hello World from React!</h1>
-        <p className={classes.join(" ")}>This is really working!</p>
-        <StyledButton
-          alt={this.state.showPersons}
-          onClick={this.togglePersonsHandler}
-        >
+        <p className={assignedClassed.join(" ")}>This is really working!</p>
+        <button className={btnClass} onClick={this.togglePersonsHandler}>
           Toggle persons
-        </StyledButton>
+        </button>
         {persons}
       </div>
     );
