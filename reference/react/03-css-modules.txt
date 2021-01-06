@@ -1,0 +1,7 @@
+74 -> 2.55
+Information on how to use css modules without ejecting.
+CSS modules is a prefered way for style handling - at least by the course instructor.
+With CSS modules, you can write normal CSS code and make sure, that it only applies to a given component.
+
+75
+By the way, if you somehow also want to define a global (i.e. un-transformed) CSS class in such a .css  file, you can prefix the selector with :global .
