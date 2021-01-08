@@ -36,8 +36,6 @@ class App extends Component {
     const persons = [...this.state.persons]; //Instead of just a pointer to the state.persons array, by spreading I create a copy of that array
     persons.splice(personIndex, 1);
     this.setState({ persons: persons });
-    console.log(persons);
-    console.log(this.state.persons);
   };
 
   togglePersonsHandler = () => {
@@ -47,7 +45,6 @@ class App extends Component {
 
   render() {
     let persons = null;
-    let btnClass = "";
     if (this.state.showPersons) {
       persons = (
         <Persons
@@ -56,7 +53,6 @@ class App extends Component {
           changed={this.nameChangedHandler}
         />
       );
-      btnClass = classes.Red;
     }
 
     return (
