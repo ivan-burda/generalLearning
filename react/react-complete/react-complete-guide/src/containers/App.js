@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import classes from "./App.css";
 import Persons from "../components/Persons/Persons";
+import Cockpit from "../components/Cockpit/Cockpit";
 
 class App extends Component {
   state = {
@@ -49,33 +50,23 @@ class App extends Component {
     let btnClass = "";
     if (this.state.showPersons) {
       persons = (
-        <div>
-          <Persons
-            persons={this.state.persons}
-            clicked={this.deletePersonHandler}
-            changed={this.nameChangedHandler}
-          />
-        </div>
+        <Persons
+          persons={this.state.persons}
+          clicked={this.deletePersonHandler}
+          changed={this.nameChangedHandler}
+        />
       );
       btnClass = classes.Red;
-    }
-
-    const assignedClassed = [];
-    if (this.state.persons.length <= 2) {
-      assignedClassed.push(classes.red); // classes: ['red]
-    }
-    if (this.state.persons.length <= 1) {
-      assignedClassed.push(classes.bold); //classes: ['red', 'bold]
     }
 
     return (
       //Notice the two approaches for dealing with an onClick (and similar) events. The second approach with .bind() is recommended because it is more resource-thrifty.
       <div className={classes.App}>
-        <h1>Hello World from React!</h1>
-        <p className={assignedClassed.join(" ")}>This is really working!</p>
-        <button className={btnClass} onClick={this.togglePersonsHandler}>
-          Toggle persons
-        </button>
+        <Cockpit
+          showPersons={this.state.showPersons}
+          persons={this.state.persons}
+          clicked={this.togglePersonsHandler}
+        />
         {persons}
       </div>
     );
