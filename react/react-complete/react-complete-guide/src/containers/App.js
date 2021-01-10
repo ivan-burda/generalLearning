@@ -26,8 +26,17 @@ class App extends Component {
     console.log("[App.js] componentWillMount");
   } */
 
-  componentDidMount() {
+  componentDidMount() { //an important lifecycle hook
     console.log("[App.js] componentDidMount");
+  }
+
+  shouldComponentUpdate(nextProps, nextState){ //an important lifecycle hook
+    console.log('[App.js] shouldComponentUpdate');
+    return true;
+  }
+
+  componentDidUpdate(){ //an important lifecycle hook
+    console.log('[App.js] componentDidUpdate');
   }
 
   nameChangedHandler = (event, id) => {

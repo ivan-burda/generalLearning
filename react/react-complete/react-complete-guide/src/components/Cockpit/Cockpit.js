@@ -1,6 +1,11 @@
-import React from "react";
+import React, {useEffect} from "react";
 import classes from "./Cockpit.css";
 const cockpit = (props) => {
+  useEffect(()=>{  //a functional component alternative for both componentDidMount and componentDidUpdate
+    console.log('[Cockpit.js] useEffect');
+    setTimeout(()=>{alert('Saved data to cloud')}, 2000);
+  }, [props.persons]);
+
   const assignedClassed = [];
   let btnClass = "";
 
