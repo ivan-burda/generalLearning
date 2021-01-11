@@ -15,6 +15,7 @@ class App extends Component {
       { id: "3", name: "Stephanie", age: 28 },
     ], //can be given any name, does not have to be an array, can contain anything
     showPersons: false,
+    showCockpit: true,
   };
 
   static getDerivedStateFromProps(props, state) {
@@ -26,17 +27,20 @@ class App extends Component {
     console.log("[App.js] componentWillMount");
   } */
 
-  componentDidMount() { //an important lifecycle hook
+  componentDidMount() {
+    //an important lifecycle hook
     console.log("[App.js] componentDidMount");
   }
 
-  shouldComponentUpdate(nextProps, nextState){ //an important lifecycle hook
-    console.log('[App.js] shouldComponentUpdate');
+  shouldComponentUpdate(nextProps, nextState) {
+    //an important lifecycle hook
+    console.log("[App.js] shouldComponentUpdate");
     return true;
   }
 
-  componentDidUpdate(){ //an important lifecycle hook
-    console.log('[App.js] componentDidUpdate');
+  componentDidUpdate() {
+    //an important lifecycle hook
+    console.log("[App.js] componentDidUpdate");
   }
 
   nameChangedHandler = (event, id) => {
@@ -85,12 +89,21 @@ class App extends Component {
     return (
       //Notice the two approaches for dealing with an onClick (and similar) events. The second approach with .bind() is recommended because it is more resource-thrifty.
       <div className={classes.App}>
-        <Cockpit
-          appTitle={this.props.appTitle}
-          showPersons={this.state.showPersons}
-          persons={this.state.persons}
-          clicked={this.togglePersonsHandler}
-        />
+        <button
+          onClick={() => {
+            this.setState({ showCockpit: false });
+          }}
+        >
+          Remove Cockpit
+        </button>
+        {this.state.showCockpit ? (
+          <Cockpit
+            appTitle={this.props.appTitle}
+            showPersons={this.state.showPersons}
+            persons={this.state.persons}
+            clicked={this.togglePersonsHandler}
+          />
+        ) : null}
         {persons}
       </div>
     );
