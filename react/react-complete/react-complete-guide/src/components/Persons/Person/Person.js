@@ -1,12 +1,13 @@
 import React, { Component, Fragment } from "react";
-//import Aux from '../../../hoc/Aux';
+import Aux from '../../../hoc/Aux';
+import withClass from '../../../hoc/withClass';
 import classes from "./Person.css";
 
 class Person extends Component {
   render() {
     console.log("[Person.js] rendering...");
     return (
-      <Fragment>
+      <Aux>
       
         <p onClick={this.props.click}>
           I'm {this.props.name}. I am {this.props.age} years old.
@@ -18,9 +19,9 @@ class Person extends Component {
           defaultValue={this.props.name}
         />
    
-      </Fragment>
+      </Aux>
     );
   }
 }
 
-export default Person;
+export default withClass(Person, classes.Person);
