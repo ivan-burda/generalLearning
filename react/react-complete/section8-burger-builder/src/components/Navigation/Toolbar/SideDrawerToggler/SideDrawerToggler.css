@@ -1,0 +1,16 @@
+.SideDrawerToggler p{
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.SideDrawerToggler p:hover{
+  color: #8f5c2c;
+  font-weight: 800;
+}
+
+@media(min-width:500px){
+  .SideDrawerToggler{
+    display: none;
+  }
+}
