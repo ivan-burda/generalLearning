@@ -1,4 +1,4 @@
-.SideDrawerToggler {
+.DrawerToggle {
   width: 40px;
   height: 100%;
   display: flex;
@@ -10,7 +10,7 @@
   cursor: pointer;
 }
 
-.SideDrawerToggler div {
+.DrawerToggle div {
   width: 90%;
   height: 3px;
   margin: 3px;
@@ -24,7 +24,7 @@
 
 
 @media(min-width:500px){
-  .SideDrawerToggler{
+  .DrawerToggle{
     display: none;
   }
 }
