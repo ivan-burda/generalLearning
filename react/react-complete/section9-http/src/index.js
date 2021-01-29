@@ -5,6 +5,14 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import axios from 'axios';
 
+//Setting baseURL with axios
+axios.defaults.baseURL = 'https://jsonplaceholder.typicode.com';
+
+//Setting any type of headers with axios
+axios.defaults.headers.common['Authorization'] = 'MY AUTH TOKEN';
+
+
+//Axios - interceptors
 axios.interceptors.request.use(request =>{
   console.log(request);
   return request;
