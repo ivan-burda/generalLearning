@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 //import axios from 'axios';
 //--> to use my axios instance instead of the common axios from the package:
 
-import {Route, NavLink} from 'react-router-dom';
+import {Route, NavLink, Switch} from 'react-router-dom';
 
 
 import './Blog.css';
 import Posts from './Posts/Posts';
 import NewPost from './NewPost/NewPost';
+import FullPost from './FullPost/FullPost';
 
 class Blog extends Component {
 
@@ -25,7 +26,7 @@ class Blog extends Component {
                             activeStyle={{
                                 color: 'green',
                                 textDecoration: 'underline',
-                            }}>Home</NavLink></li>
+                            }}>Posts</NavLink></li>
                             {/* The value of to can be an object within JSX code. In this object we setup the NavLink attributes. It is possible to sertup also a #fragment and query parameters, however, in the example below it is just for a demonstration */}
                             
                             <li><NavLink to={{
@@ -42,9 +43,13 @@ class Blog extends Component {
                 <Route path="/"  render={()=><h1>Home2</h1>}/> */}
 
                 {/* Loading components instead of rendering some JSX right at the spot */}
-                <Route path="/" exact component={Posts}/>
-                <Route path="/new-post" exact component={NewPost}/>
 
+                {/* Switch is used to make sure only one route gets loaded. If course if a route is kept outside of a Switch, it will always load */}
+                    <Route path="/" exact component={Posts}/>
+                <Switch> 
+                    <Route path="/new-post" exact component={NewPost}/>
+                    <Route path="/:id" exact component={FullPost}/>
+                </Switch>
             </div>
         );
     }
