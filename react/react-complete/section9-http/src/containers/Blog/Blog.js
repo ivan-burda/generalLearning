@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 //import axios from 'axios';
 //--> to use my axios instance instead of the common axios from the package:
 
-import {Route, NavLink, Switch} from 'react-router-dom';
+import {Route, NavLink, Switch, Redirect} from 'react-router-dom';
 
 
 import './Blog.css';
 import Posts from './Posts/Posts';
 import NewPost from './NewPost/NewPost';
-import FullPost from './FullPost/FullPost';
 
 class Blog extends Component {
 
@@ -20,7 +19,7 @@ class Blog extends Component {
                         <ul>
 
                             <li><NavLink 
-                            to="/" 
+                            to="/posts/" 
                             exact
                             activeClassName="my-active"
                             activeStyle={{
@@ -45,10 +44,10 @@ class Blog extends Component {
                 {/* Loading components instead of rendering some JSX right at the spot */}
 
                 {/* Switch is used to make sure only one route gets loaded. If course if a route is kept outside of a Switch, it will always load */}
-                    <Route path="/" exact component={Posts}/>
                 <Switch> 
                     <Route path="/new-post" exact component={NewPost}/>
-                    <Route path="/:id" exact component={FullPost}/>
+                    <Route path="/posts" component={Posts}/>
+                    <Redirect from= "/" to= "/posts"/>
                 </Switch>
             </div>
         );
