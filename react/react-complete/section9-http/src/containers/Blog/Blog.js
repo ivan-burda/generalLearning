@@ -10,6 +10,9 @@ import Posts from './Posts/Posts';
 import NewPost from './NewPost/NewPost';
 
 class Blog extends Component {
+    state ={
+        auth: false,
+    }
 
     render () {
         return (
@@ -45,7 +48,7 @@ class Blog extends Component {
 
                 {/* Switch is used to make sure only one route gets loaded. If course if a route is kept outside of a Switch, it will always load */}
                 <Switch> 
-                    <Route path="/new-post" exact component={NewPost}/>
+                    {this.state.auth ? <Route path="/new-post" exact component={NewPost}/>: null}
                     <Route path="/posts" component={Posts}/>
                     <Redirect from= "/" to= "/posts"/>
                 </Switch>
