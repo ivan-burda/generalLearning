@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 class Course extends Component {
     
     render () {
+        //console.log(this.props.match.params);
         return (
             <div>
                 <h1>{this.props.title}</h1>
