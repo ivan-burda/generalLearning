@@ -15,3 +15,6 @@ npm install --save axios
 -usable with js in general, not only with react
 
 npm install --save react-router-dom
+
+Install a package as a DEV dependency 
+npm install webpack --save-dev
