@@ -24,6 +24,7 @@ npm install prop-types
 
 
 npm install react-icons 
+https://react-icons.github.io/react-icons/
 // Font Awesome
 import { FaIconName } from 'react-icons/fa'
 
