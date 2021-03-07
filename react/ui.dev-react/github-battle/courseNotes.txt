@@ -1,0 +1,9 @@
+Negatives
+-All CSS in a single file, instead of using css modules 
+-Relies on binding methods in a class component state instead of using methods based on arrow functions for which the correct this binding is done implicitely
+-several components in a single file do not look like an approach that improves orientation 
+
+
+Positives
+-getting a different vies: React.Component, instead of importing the Component and refering to the import 
+-
