@@ -6,4 +6,5 @@ Negatives
 
 Positives
 -getting a different vies: React.Component, instead of importing the Component and refering to the import 
--
+-explains {children} really well
+-explains well PropTypes validations
