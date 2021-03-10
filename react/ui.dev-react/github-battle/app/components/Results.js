@@ -77,7 +77,7 @@ export default class Results extends React.Component{
     const{winner, loser, error, loading} = this.state;
 
     if(loading){
-      return <Loading/>
+      return <Loading text='Battling'/>
     }
 
     if(error){
@@ -118,3 +118,4 @@ Results.propTypes = {
   playerTwo: PropTypes.string.isRequired,
   onReset: PropTypes.func.isRequired, 
 }
+

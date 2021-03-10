@@ -1,33 +1,54 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
+const styles = {
+  content: {
+    fontSize: '35px',
+    position: 'absolute',
+    left: '0',
+    right: '0',
+    marginTop: '20px',
+    textAlign: 'center',
+  }
+};
 
  export default class Loading extends React.Component{
    constructor(props){
      super(props);
 
      this.state = {
-       content: 'Loading'
+       content: props.text
      }
    }
 
    componentDidMount(){
-    window.setInterval(()=> {
-      this.state.content === ('Loading' + '...') ? this.setState({content: 'Loading'}): this.setState(({content})=>({content:content +'.'}))
-    }, 300);
+     const {speed, text } = this.props;
+     //Setting a variable in the way 'this.interval' in a function then the variable becomes globally accessible als from other functions
+     this.interval =  window.setInterval(()=> {
+      this.state.content === (text + '...') ? this.setState({content: text}): this.setState(({content})=>({content:content +'.'}))
+    }, speed);
   }
 
   componentWillUnmount() {
-   // fix Warning: Can't perform a React state update on an unmounted component
-   this.setState = (state,callback)=>{
-       return;
-   };
+    window.clearInterval(this.interval);
   }
 
 
    render(){
     return(
-      <p>
+      <p style={styles.content}>
         {this.state.content}
       </p>
     )
    }
  }
+
+ Loading.propTypes = {
+   text: PropTypes.string.isRequired,
+   speed: PropTypes.number.isRequired
+ }
+
+ Loading.defaultProps = {
+  text: 'Loading',
+  speed: 300
+}
