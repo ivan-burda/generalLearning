@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 const styles = {
   container: {
     position: 'relative',
-    display: 'flex'
+    display: 'flex',
+    cursor: 'pointer'
   },
   tooltip:{
     boxSizing: 'border-box',
@@ -34,27 +35,27 @@ export default class Tooltip extends React.Component{
     this.mouseOver = this.mouseOver.bind(this);
     this.mouseOut = this.mouseOut.bind(this);
 
-  }
+  };
 
 
   mouseOver(){
     this.setState({hovering:true});
     console.log('hovering on ');
-  }
+  };
   
   mouseOut(){
     this.setState({hovering:false});
     console.log('not hovering on ');
-  }
+  };
 
   render(){
     const {text, children} = this.props;
     const {hovering} = this.state;
-
+    console.log(children);
     return(
       <div 
-        onMouseOver={()=>this.mouseOver} 
-        onMouseOut={()=>this.mouseOut} 
+        onMouseOver={this.mouseOver} 
+        onMouseOut={this.mouseOut} 
         style={styles.container}>
           {hovering === true ? <div style={styles.tooltip}>{text}</div> : null}
           {children}
