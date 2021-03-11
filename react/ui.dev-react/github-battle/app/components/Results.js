@@ -5,8 +5,55 @@ import Card from './Card';
 import PropTypes from 'prop-types';
 import Loading from './Loading';
 
+const styles= {
+  container: {
+    position: 'relative',
+    display: 'flex'
+  },
+  tooltip:{
+    boxSizing: 'border-box',
+    position: 'absolute',
+    width: '160px',
+    bottom: '100%',
+    left: '50%',
+    margineLeft: '-80px',
+    borderRadius: '3px',
+    backgroundColor: 'black',
+    padding: '7px',
+    marginBottom: '5px',
+    color: '#fff',
+    textAlign: 'center',
+    fontSize: '14px'
+  }
+}
 
-function ProfileList({profile}){
+class ProfileList extends React.Component{
+  constructor(props){
+    super(props);
+ 
+    this.state = {
+      hoveringLocation: false,
+      hoveringCompany: false,
+    }
+
+    this.mouseOver = this.mouseOver.bind(this);
+    this.mouseOut = this.mouseOut.bind(this);
+
+  }
+
+mouseOver(id){
+  this.setState({[id]:true});
+  console.log('hovering on ' + id);
+}
+
+mouseOut(id){
+  this.setState({[id]:false});
+  console.log('not hovering on ' + id);
+}
+
+render(){
+  const {profile} = this.props;
+  const {hoveringCompany, hoveringLocation} = this.state;
 
   return(
     <ul className='card-list'>
@@ -15,12 +62,22 @@ function ProfileList({profile}){
       {profile.name}
     </li>
     {profile.location ? (
-    <li>
+    <li 
+      onMouseOver={()=>this.mouseOver('hoveringLocation')}
+      onMouseOut={()=>this.mouseOut('hoveringLocation')}
+      styles={styles.container}
+    >
+      {hoveringLocation === true ? <div style={styles.tooltip}>User's location</div> : null}
       <FaCompass color='rgb(144,115,255)' size={22}/>
       {profile.location}
     </li>) : null}
     {profile.company ? (
-    <li>
+      <li 
+        onMouseOver={()=>this.mouseOver('hoveringCompany')}
+        onMouseOut={()=>this.mouseOut('hoveringCompany')}
+        styles={styles.container}
+      >
+      {hoveringCompany === true ? <div style={styles.tooltip}>User's company</div> : null}
       <FaBriefcase color='#795548' size={22}/>
       {profile.company}
     </li>) : null}
@@ -35,6 +92,9 @@ function ProfileList({profile}){
   </ul>
   );
 }
+
+}
+
 
 ProfileList.propTypes = {
   profile: PropTypes.object.isRequired
