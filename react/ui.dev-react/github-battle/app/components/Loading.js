@@ -9,6 +9,7 @@ const styles = {
     right: '0',
     marginTop: '20px',
     textAlign: 'center',
+    color: 'red'
   }
 };
 
