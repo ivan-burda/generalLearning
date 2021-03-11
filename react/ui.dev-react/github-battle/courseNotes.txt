@@ -9,3 +9,4 @@ Positives
 -explains {children} really well
 -explains well PropTypes validations
 -default prop values
+-component reusability
