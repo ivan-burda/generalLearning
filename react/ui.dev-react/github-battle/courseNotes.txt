@@ -10,3 +10,4 @@ Positives
 -explains well PropTypes validations
 -default prop values
 -component reusability
+-
