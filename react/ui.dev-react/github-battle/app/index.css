@@ -23,6 +23,13 @@ li{
   padding: 50px;
 }
 
+.dark{
+  color: #DADADA;
+  background-color: #1c2022;
+  height: 100%;
+
+}
+
 .flex-center{
   display: flex;
   justify-content: center;
@@ -100,6 +107,11 @@ color: inherit;
 .card-list a{
   font-weight: 500;
   color: inherit;
+}
+
+.bg-dark{
+  background-color: rgb(36,40,42);
+  border-radius: 3px;
 }
 
 .bg-light{
@@ -242,6 +254,21 @@ color: inherit;
   font-size: 20px;
   margin: 50px 0;
 
+}
+
+.player-inputs .input-dark{
+  color: #dadada;
+  background: rgba(0,0,0,0.3);
+}
+
+.light-btn{
+  color: #000;
+  background: #aaa8a8;
+}
+
+.light-btn:disabled{
+  background: #929292;
+  color: #4a4a4a;
 }
 
 
