@@ -11,3 +11,5 @@ Positives
 -default prop values
 -component reusability
 -React Context
+-Router query strings 
+

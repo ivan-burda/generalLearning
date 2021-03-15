@@ -36,3 +36,8 @@ import { IoIconName } from 'react-icons/io'
 
 // Github Octicons
 import { GoIconName } from 'react-icons/go'
+
+npm install react-router-dom
+
+npm install query-string 
+-a package for parsing query parameters 
