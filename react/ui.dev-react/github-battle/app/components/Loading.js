@@ -14,15 +14,9 @@ const styles = {
 };
 
  export default class Loading extends React.Component{
-   constructor(props){
-     super(props);
+  state = { content: this.props.text }
 
-     this.state = {
-       content: props.text
-     }
-   }
-
-   componentDidMount(){
+   componentDidMount () {
      const {speed, text } = this.props;
      //Setting a variable in the way 'this.interval' in a function then the variable becomes globally accessible als from other functions
      this.interval =  window.setInterval(()=> {
