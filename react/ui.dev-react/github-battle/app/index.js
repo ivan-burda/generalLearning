@@ -1,13 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Popular from './components/Popular';
-import Battle from './components/Battle';
 import {ThemeProvider} from './contexts/theme';
 import Nav from './components/Nav';
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
-import Results from './components/Results';
+import Loading from './components/Loading';
 
+//Dynamic import syntax - allows us to import modules dynamically only once they are needed
+const Popular = React.lazy(()=> import('./components/Popular'));
+const Battle = React.lazy(()=> import('./components/Battle'));
+const Results = React.lazy(()=> import('./components/Results'));
 
 //Component
 //-State
@@ -32,13 +34,16 @@ class App extends React.Component{
         <div className={this.state.theme}>
           <div className="container">
               <Nav/>
-              <Switch>
-                <Route exact path='/' component={Popular}/>
-                <Route exact path='/battle' component={Battle}/>
-                <Route path='/battle/results' component={Results}/>
-                <Route render={()=> <h1>404</h1>}/>
-              </Switch>
-            </div>
+              {/* The routes where dynamically loaded components are used have to be wrapped in the React.Suspense */}
+              <React.Suspense fallback={<Loading/>}>
+                <Switch>
+                  <Route exact path='/' component={Popular}/>
+                  <Route exact path='/battle' component={Battle}/>
+                  <Route path='/battle/results' component={Results}/>
+                  <Route render={()=> <h1>404</h1>}/>
+                </Switch>
+              </React.Suspense>
+          </div>
         </div>
         </ThemeProvider>
      </Router>

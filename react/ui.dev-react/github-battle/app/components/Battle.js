@@ -1,9 +1,11 @@
+//Static imports from ES6 means they all have to be here at the top
 import React from 'react';
 import {FaUserFriends, FaFighterJet, FaTrophy, FaTimesCircle} from 'react-icons/fa';
 import PropTypes from 'prop-types';
 import Results from './Results';
 import {ThemeConsumer} from '../contexts/theme';
 import {Link} from 'react-router-dom';
+
 
 
 function Instructions (){
@@ -120,10 +122,6 @@ PlayerPreview.propTypes = {
   onReset: PropTypes.func.isRequired,
   label: PropTypes.string.isRequired
 }
-
-
-
-
 
 export default class Battle extends React.Component{
   state={

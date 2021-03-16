@@ -12,4 +12,4 @@ Positives
 -component reusability
 -React Context
 -Router query strings 
-
+-Dynamic imports
