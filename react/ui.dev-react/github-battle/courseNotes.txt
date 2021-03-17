@@ -13,3 +13,8 @@ Positives
 -React Context
 -Router query strings 
 -Dynamic imports
+
+
+A great course. Even though I had already got through the React part of https://www.udemy.com/course/react-the-complete-guide-incl-redux/ and built my own Habit-tracker app, I still managed to learn lot, see things from a different perspective and experience several aha moments. This is really a gem for anyone learning React. The course does not take too much time, yet, teaches react on building a complete app and even deploying it via Netlify. 
+My aha moments were related to children, propTypes, passing data via query strings, dynamic importing. 
+
