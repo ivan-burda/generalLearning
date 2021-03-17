@@ -11,20 +11,21 @@ npm start
 watching-too-many-files issue:
 echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
 
+
+//A package to support axios api-fetching
 npm install --save axios 
 -usable with js in general, not only with react
 
-npm install --save react-router-dom
-
-Install a package as a DEV dependency 
+//Install a package as a DEV dependency 
 npm install webpack --save-dev
 
-
+//A package to support prop types
 npm install prop-types 
 
-
+//A package to support react icons
 npm install react-icons 
 https://react-icons.github.io/react-icons/
+
 // Font Awesome
 import { FaIconName } from 'react-icons/fa'
 
@@ -37,7 +38,14 @@ import { IoIconName } from 'react-icons/io'
 // Github Octicons
 import { GoIconName } from 'react-icons/go'
 
-npm install react-router-dom
+//A package to support react routing
+npm install --save react-router-dom
 
+//A package for parsing query parameters 
 npm install query-string 
--a package for parsing query parameters 
+
+//A plugin for supporting dynamic importing of fractional packages when using a react applicaiton
+npm install babel-plugin-syntax-dynamic-import 
+
+//A plugin for supporting _redirect
+npm install --save-dev copy-webpack-plugin 
