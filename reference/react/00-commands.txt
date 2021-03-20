@@ -52,3 +52,9 @@ npm install --save-dev copy-webpack-plugin
 
 //Redux
 npm install --save redux
+
+//React-redux - a package for connecting redux to react 
+npm install --save react-redux
+
+//Install the latest version of react 
+npm install --save react@latest react-dom@latest
