@@ -49,3 +49,6 @@ npm install babel-plugin-syntax-dynamic-import
 
 //A plugin for supporting _redirect
 npm install --save-dev copy-webpack-plugin 
+
+//Redux
+npm install --save redux
