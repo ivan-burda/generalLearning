@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import CounterControl from '../../components/CounterControl/CounterControl';
 import CounterOutput from '../../components/CounterOutput/CounterOutput';
 
+import * as actionTypes from '../../store/actions';
+
 class Counter extends Component {
     render () {
         return (
@@ -39,12 +41,12 @@ const mapStateToProps = (state) =>{
 //Instructions on how the component's actions get mapped to the redux store
 const mapDispatchToProps = (dispatch) => {
     return{
-        onIncrementCounter: () => dispatch ({type: 'INCREMENT'}),    //As this is a one-liner I don't have to use curly braces when returning from the arrow function
-        onDecrementCounter: () => dispatch ({type: 'DECREMENT'}),
-        onAddCounter: ()=> dispatch ({type: 'ADD', val: 10}), //naming 'type' is mandatory; naming 'value' (and any other arguments) is my own decision. Instead of 'value' I could rather pass in an object 'payload{}' containing any data I want to pass
-        onSubtractCounter: ()=> dispatch ({type: 'SUBTRACT', val: 15}),
-        onStoreResult: ()=> {dispatch({type: 'STORE_RESULT'});},
-        onDeleteResult: (id)=> dispatch({type: 'DELETE_RESULT', resultElementId:id}),
+        onIncrementCounter: () => dispatch ({type: actionTypes.INCREMENT}),    //As this is a one-liner I don't have to use curly braces when returning from the arrow function
+        onDecrementCounter: () => dispatch ({type: actionTypes.DECREMENT}),
+        onAddCounter: ()=> dispatch ({type: actionTypes.ADD, val: 10}), //naming 'type' is mandatory; naming 'value' (and any other arguments) is my own decision. Instead of 'value' I could rather pass in an object 'payload{}' containing any data I want to pass
+        onSubtractCounter: ()=> dispatch ({type: actionTypes.SUBTRACT, val: 15}),
+        onStoreResult: ()=> {dispatch({type: actionTypes.STORE_RESULT});},
+        onDeleteResult: (id)=> dispatch({type: actionTypes.DELETE_RESULT, resultElementId:id}),
     }
 };
 
