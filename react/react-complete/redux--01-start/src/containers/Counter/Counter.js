@@ -18,7 +18,7 @@ class Counter extends Component {
                 <CounterControl label="Add 10" clicked={this.props.onAddCounter}  />
                 <CounterControl label="Subtract 15" clicked={this.props.onSubtractCounter}  />
                 <hr/>
-                <button onClick={this.props.onStoreResult}>Store Result</button>
+                <button onClick={()=>this.props.onStoreResult(this.props.ctr)}>Store Result</button>
                 <ul>
                     {
                     this.props.storedResults.map(strResult=>(
@@ -33,8 +33,8 @@ class Counter extends Component {
 //Instructions on how the component's state gets mapped to redux store
 const mapStateToProps = (state) =>{
     return {
-        ctr: state.counter,
-        storedResults: state.results,
+        ctr: state.ctr.counter, //the .ctr after the state is the name given to the counterReducer within the rootReducer in the index.js file
+        storedResults: state.res.results,
     }
 };
 
@@ -45,7 +45,7 @@ const mapDispatchToProps = (dispatch) => {
         onDecrementCounter: () => dispatch ({type: actionTypes.DECREMENT}),
         onAddCounter: ()=> dispatch ({type: actionTypes.ADD, val: 10}), //naming 'type' is mandatory; naming 'value' (and any other arguments) is my own decision. Instead of 'value' I could rather pass in an object 'payload{}' containing any data I want to pass
         onSubtractCounter: ()=> dispatch ({type: actionTypes.SUBTRACT, val: 15}),
-        onStoreResult: ()=> {dispatch({type: actionTypes.STORE_RESULT});},
+        onStoreResult: (result)=> {dispatch({type: actionTypes.STORE_RESULT, result:result});},
         onDeleteResult: (id)=> dispatch({type: actionTypes.DELETE_RESULT, resultElementId:id}),
     }
 };
