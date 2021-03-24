@@ -13,7 +13,7 @@ import personsReducer from './store/reducers/personsReducer';
 
 //Combine reducers
 const rootReducer = combineReducers({
-  persons: personsReducer,
+  prsns: personsReducer,
 })
 
 
