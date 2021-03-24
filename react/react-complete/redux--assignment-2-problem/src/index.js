@@ -9,8 +9,12 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
 //Reducers
+import personsReducer from './store/reducers/personsReducer';
 
 //Combine reducers
+const rootReducer = combineReducers({
+  persons: personsReducer,
+})
 
 
 const store = createStore(rootReducer);
