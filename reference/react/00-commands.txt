@@ -58,3 +58,6 @@ npm install --save react-redux
 
 //Install the latest version of react 
 npm install --save react@latest react-dom@latest
+
+
+Redux Devtools - Chrome extension (remotedev.io)
