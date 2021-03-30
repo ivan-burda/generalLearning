@@ -61,3 +61,7 @@ npm install --save react@latest react-dom@latest
 
 
 Redux Devtools - Chrome extension (remotedev.io)
+
+
+//Redux thunk - a middleware for being able to handle async code 
+npm install --save redux-thunk
