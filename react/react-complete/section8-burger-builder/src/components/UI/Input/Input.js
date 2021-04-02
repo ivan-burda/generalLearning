@@ -15,7 +15,6 @@ const input = (props) =>{
   switch(props.elementType){
     case('input'):
       inputElement = <input className={inputClasses.join(' ')} {...props.elementConfig} value={props.value} onChange={props.changed}/>;
-      console.log(inputClasses.join(' '));
       break;
     case('textarea'):
       inputElement = <textarea className={inputClasses.join(' ')} {...props.elementConfig} value={props.value} onChange={props.changed}/>;

@@ -118,8 +118,6 @@ class ContactData extends Component{
 
   orderHandler=(event)=>{
     event.preventDefault();
-    
-    console.log(this.state.orderForm);
     const formData = {};
     for(let formElementIdentifier in this.state.orderForm){
       formData[formElementIdentifier] = this.state.orderForm[formElementIdentifier].value;
@@ -132,6 +130,8 @@ class ContactData extends Component{
     }
 
     this.props.onOrderBurger(order);
+    console.log("Total price");
+    console.log(this.props.totalPrice);
   }
 
   checkValidity(value, rules){
@@ -167,7 +167,6 @@ class ContactData extends Component{
     for (let inputIdentifiers in updatedOrderForm){
       formIsValid = updatedOrderForm[inputIdentifier].valid && formIsValid;
     }
-    console.log(formIsValid);
     this.setState({orderForm: updatedOrderForm, formIsValid: formIsValid});
   }
 
@@ -218,7 +217,7 @@ render(){
 const mapStateToProps = state => {
   return {
     ings: state.burgerBuilder.ingredients,
-    price: state.burgerBuilder.totalPrice,
+    totalPrice: state.burgerBuilder.totalPrice,
     loading: state.order.loading
   }
 };
