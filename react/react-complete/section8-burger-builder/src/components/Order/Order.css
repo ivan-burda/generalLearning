@@ -5,4 +5,32 @@
   padding: 10px;
   margin: 10px auto;
   box-sizing: border-box;
+  background-color: rgb(236, 241, 243);
+}
+
+.Ingredient{
+  text-transform: capitalize;
+  font-size: 0.8rem;
+  display: inline-block;
+  margin: 2px 4px;
+  padding: 2px 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.salad{
+  background-color: #91ce50;
+}
+
+.bacon{
+  background-color: #c45e38;
+}
+
+.cheese{
+  background-color: #d6bb22;
+}
+
+.meat{
+  background-color: #702e05;
+  color: #fff;
 }

@@ -13,16 +13,12 @@ for(let ingredientName in props.ingredients){
 };
 
 let ingredientOutput = ingredients.map(ig =>{
+  let ingredientClasses = [classes.Ingredient];
+  ingredientClasses.push(classes[ig.name]);
   return <span 
-          style={
-            {
-              textTransform:'capitalize',
-              display: 'inline-block',
-              margin: '0 8px',
-              border: '1px solid #ccc'
-            }
-          }
-          key={ig.name}>  {ig.name} ({ig.amount}) </span>;
+          key={ig.name}
+          className={ingredientClasses.join(" ")}
+          >{ig.name} ({ig.amount})</span>;
 });
 
 
