@@ -96,8 +96,6 @@ export const deleteOrder = (orderId) => {
     dispatch(deleteOrderStart());
     axios.delete(`/orders/${orderId}.json`)
     .then(response =>{
-      console.log('success');
-      console.log(response);
       dispatch(deleteOrderSuccess(orderId));
     })
     .catch(error=>{
