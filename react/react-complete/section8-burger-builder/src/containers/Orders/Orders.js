@@ -24,7 +24,9 @@ class Orders extends Component {
     if (!this.props.loading){
       orders = (
         this.props.orders.map(order=>(
-          <Order key={order.id}
+          <Order
+          deleteOrder={()=>this.props.onDeleteOrder(order.id)}
+          key={order.id}
           ingredients={order.ingredients}
           totalPrice={order.totalPrice}/>))
       );
@@ -48,9 +50,8 @@ const mapStateToProps = (state) => {
 //Mapping the components actions to redux
 const mapDispatchToProps = dispatch => {
   return {
-    onFetchOrders: () => {
-      dispatch(actions.fetchOrders());
-    }
+    onFetchOrders: () => {dispatch(actions.fetchOrders())},
+    onDeleteOrder: (id) => {dispatch(actions.deleteOrder(id))},
   };
 };
 

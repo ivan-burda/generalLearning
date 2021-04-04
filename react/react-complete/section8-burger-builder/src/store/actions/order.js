@@ -2,7 +2,7 @@ import * as actionTypes from './actionTypes';
 import axios from '../../axios-orders';
 
 
-//Purchasing
+//CREATE ORDERS - Purchasing
 export const purchaseInit = () => {
   return {
     type: actionTypes.PURCHASE_INIT
@@ -44,7 +44,7 @@ export const purchaseBurgerFail = (error) => {
 };
 
 
-//Orders
+//GET ORDERS
 export const fetchOrdersStart = () => {
   return {
       type: actionTypes.FETCH_ORDERS_START,
@@ -82,3 +82,41 @@ export const fetchOrdersFail = (error) => {
   };
 };
 
+
+
+//DELETE ORDER
+export const deleteOrderStart = () => {
+  return {
+      type: actionTypes.DELETE_ORDER_START,
+  };
+};
+
+export const deleteOrder = (orderId) => {
+  return dispatch => {
+    dispatch(deleteOrderStart());
+    axios.delete(`/orders/${orderId}.json`)
+    .then(response =>{
+      console.log('success');
+      console.log(response);
+      dispatch(deleteOrderSuccess(orderId));
+    })
+    .catch(error=>{
+      console.log(error);
+      dispatch(deleteOrderFail(error));
+    })
+  };
+};
+
+export const deleteOrderSuccess = (orderId) => {
+  return {
+    type: actionTypes.DELETE_ORDER_SUCCESS,
+    orderId: orderId
+  }
+};
+
+export const deleteOrderFail = (error) => {
+  return {
+    type: actionTypes.DELETE_ORDER_FAILED,
+    error: error
+  };
+};
