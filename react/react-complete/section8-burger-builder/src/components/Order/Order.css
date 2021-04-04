@@ -34,3 +34,26 @@
   background-color: #702e05;
   color: #fff;
 }
+
+.ButtonContainer{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.ButtonContainer button{
+  border: 3px solid #fff;
+  color:rgb(214, 208, 208);
+  background-color: #fff;
+  font-weight: 700;
+  border-radius: 5px;
+  width: 25px;
+  height: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.ButtonContainer button:hover{
+
+  color:#40a4c8;
+}

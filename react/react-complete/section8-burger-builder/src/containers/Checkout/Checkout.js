@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
 import {Route, Redirect} from 'react-router-dom';
+
+//Connects the redux store to react
 import { connect } from 'react-redux';
 
+//Project components
 import CheckoutSummary from '../../components/Order/CheckoutSummary/CheckoutSummary';
 import ContactData from './ContactData/ContactData';
 import * as actions from '../../store/actions/index';
 
+//The Checkout component
 class Checkout extends Component{
 
   checkoutCancelledHandler = () =>{
@@ -40,6 +44,7 @@ class Checkout extends Component{
   }
 }
 
+//Mapping the component to the redux store
 const mapStateToProps = (state) =>{
   return{
     ings: state.burgerBuilder.ingredients,

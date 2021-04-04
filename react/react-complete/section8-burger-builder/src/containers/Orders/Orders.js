@@ -1,12 +1,19 @@
 import React, {Component} from 'react';
-import { connect } from 'react-redux';
-import Order from '../../components/Order/Order';
 
+//Connext the react component to the redux store
+import { connect } from 'react-redux';
+
+//Axios
 import axios from '../../axios-orders';
+
+//Project components
+import Order from '../../components/Order/Order';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
-import * as actions from '../../store/actions/index';
 import Spinner from '../../components/UI/Spinner/Spinner';
 
+import * as actions from '../../store/actions/index';
+
+//The Orders component
 class Orders extends Component {
   componentDidMount(){
     this.props.onFetchOrders();
@@ -30,6 +37,7 @@ class Orders extends Component {
   }
 };
 
+//Mapping the component's state to the redux store
 const mapStateToProps = (state) => {
   return {
     orders: state.order.orders,
@@ -37,6 +45,7 @@ const mapStateToProps = (state) => {
   };
 };
 
+//Mapping the components actions to redux
 const mapDispatchToProps = dispatch => {
   return {
     onFetchOrders: () => {

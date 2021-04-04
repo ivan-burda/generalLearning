@@ -2,12 +2,14 @@ import { initIngredients } from '../actions';
 import * as actionTypes from '../actions/actionTypes';
 import { updateObject } from '../utility/utility';
 
+//INITIAL STATE
 const initialState = {
   orders: [],
   loading: false,
   purchased: false,
 }
 
+//FUNCTIONS - they are used by the reducer below
 const purchaseBurgerSuccess = (state, action) => {
   const newOrder = updateObject(action.orderData, { id: action.orderId });
   return updateObject(state, {
@@ -30,6 +32,7 @@ const fatchOrdersFailed = (state, action) => {
   });
 };
 
+//REDUCER - Relies on the functions above. The functions could be directly in the reducer, however, putting them outside makes the switch more readable
 const reducer = (state = initialState, action) => {
   switch (action.type){
     case actionTypes.PURCHASE_INIT: return updateObject(state, { purchased: false });

@@ -1,7 +1,12 @@
 import React, {Component} from 'react';
+
+//Connects the state and actions redux to react
 import { connect } from 'react-redux';
 
+//An alternative to <React.Fragment></React.Fragment>
 import Aux from '../../hoc/Aux/Aux';
+
+//Project components
 import Burger from '../../components/Burger/Burger';
 import BuildControls from '../../components/Burger/BuildControls/BuildControls';
 import Modal from '../../components/UI/Modal/Modal';
@@ -9,21 +14,21 @@ import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary';
 import Spinner from '../../components/UI/Spinner/Spinner';
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 
+//Importing actions
 import * as actions from '../../store/actions/index';
+
+//Axios
 import axios from '../../axios-orders';
 
 
-
+//The BurgerBuilder component
 class BurgerBuilder extends Component{
-  // constructor(props){
-  //   super(props);
-  //   this.state = {...};
-  // }
   state={
     purchaseable: false,
     purchasing: false,
   }
 
+  //component methods
   componentDidMount(){
     this.props.onInitIngredients();
   }
@@ -46,6 +51,7 @@ class BurgerBuilder extends Component{
     this.props.history.push('/checkout');
   };
 
+  //Rendering
   render(){
     const disabledInfo = {
       ...this.props.ings,
@@ -89,7 +95,9 @@ class BurgerBuilder extends Component{
   }
 }
 
+//Mapping the component STATE to the redux store
 const mapStateToProps = (state) => {
+  //state is the object that contains the react store; burgerBulder is the burgerBuilder reducer combined to the store
   return{
     ings: state.burgerBuilder.ingredients,
     price: state.burgerBuilder.totalPrice,
@@ -97,6 +105,7 @@ const mapStateToProps = (state) => {
   };
 }
 
+//Mapping the component ACTIONS to the redux store
 const mapDispatchToProps = (dispatch) => {
   return{
     onIngredientAdded: (ingName) => dispatch(actions.addIngredient(ingName)),
