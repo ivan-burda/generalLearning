@@ -24,7 +24,7 @@ let ingredientOutput = ingredients.map(ig =>{
 
 return(
   <div className={classes.Order}>
-  <div className={classes.ButtonContainer}><button>x</button></div>
+  <div className={classes.ButtonContainer}><button>✕</button></div>
   <p><strong>Ingredients:</strong> {ingredientOutput}</p>
   <p><strong>Price:</strong> USD {Number.parseFloat(props.totalPrice).toFixed(2)}</p>
 </div>

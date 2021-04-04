@@ -1,18 +1,11 @@
 import * as actionTypes from './actionTypes';
 import axios from '../../axios-orders';
 
-export const purchaseBurgerSuccess = (id, orderData) => {
-  return {
-    type: actionTypes.PURCHASE_BURGER_SUCCESS,
-    orderId: id,
-    orderData: orderData,
-  }
-};
 
-export const purchaseBurgerFail = (error) => {
+//Purchasing
+export const purchaseInit = () => {
   return {
-    type: actionTypes.PURCHASE_BURGER_FAIL,
-    error: error,
+    type: actionTypes.PURCHASE_INIT
   }
 };
 
@@ -35,26 +28,23 @@ export const purchaseBurger = (orderData) => {
   };
 };
 
-export const purchaseInit = () => {
+export const purchaseBurgerSuccess = (id, orderData) => {
   return {
-    type: actionTypes.PURCHASE_INIT
+    type: actionTypes.PURCHASE_BURGER_SUCCESS,
+    orderId: id,
+    orderData: orderData,
   }
 };
 
-export const fetchOrdersSuccess = (orders) => {
-  return {
-    type: actionTypes.FETCH_ORDERS_SUCCESS,
-    orders: orders
-  }
-};
-
-export const fetchOrdersFail = (error) => {
+export const purchaseBurgerFail = (error) => {
   return {
     type: actionTypes.PURCHASE_BURGER_FAIL,
-    error: error
-  };
+    error: error,
+  }
 };
 
+
+//Orders
 export const fetchOrdersStart = () => {
   return {
       type: actionTypes.FETCH_ORDERS_START,
@@ -77,3 +67,18 @@ export const fetchOrders = () => {
       })
   }
 }
+
+export const fetchOrdersSuccess = (orders) => {
+  return {
+    type: actionTypes.FETCH_ORDERS_SUCCESS,
+    orders: orders
+  }
+};
+
+export const fetchOrdersFail = (error) => {
+  return {
+    type: actionTypes.PURCHASE_BURGER_FAIL,
+    error: error
+  };
+};
+
