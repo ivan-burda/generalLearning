@@ -1,0 +1,1 @@
+Perfect explanation of the fundamental architecture: createStore, getting the state, udpating the state, subscribing, dispatching, reducers 
