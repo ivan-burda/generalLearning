@@ -1,46 +1,4 @@
-
-
-
-
-{
-  type: 'REMOVE_TODO',
-  id: 0,
-}
-
-{
-  type: 'TOGGLE_TODO',
-  id: 0,
-}
-
-{
-  type: 'ADD_GOAL',
-  goal: {
-    id: 0,
-    name: 'Run a marathon'
-  }
-}
-
-{
-  type: 'REMOVE_GOAL',
-  id: 0
-}
-
-
-/*Pure function
-1. They always return the same resutls if the same argumetnsa rea passed in
-2. They dpeend only on the argumetns passed int o them
-3. They should never produce any side effects (no state mutation, no ajax request, no manipulating the dom, etc.)
-*/
-
-//Reducer function - it takes the state and the action and reduces them to a brand new state which it returns
-function todos(state = [], action){
-  if(action.type === 'ADD_TODO'){
-    return state.concat([action.todo])
-  };
-
-  return state;
-}
-
+//LIBRARY CODE
 //Create store
 function createStore (reducer) {
   //The store should have four parts
@@ -76,18 +34,138 @@ function createStore (reducer) {
 };
 
 
+//APP CODE
+
+//Action types
+const ADD_TODO = 'ADD_TODO';
+const REMOVE_TODO = 'REMOVE_TODO';
+const TOGGLE_TODO = 'TOGGLE_TODO';
+
+const ADD_GOALD = 'ADD_GOALD';
+const REMOVE_GOALD = 'REMOVE_GOALD';
+
+//Action creators
+//They are used to describe any possible action which we want to make the state of our store
+//These are the only events in our entire application that will change the state of our store
+function addTodoAction (todo) {
+  return {
+    type: ADD_TODO,
+    todo,
+  }
+};
+
+function removeTodoAction (id) {
+  return {
+    type: REMOVE_TODO,
+    id,
+  }
+};
+
+function toggleTodoAction (id) {
+  return {
+    type: TOGGLE_TODO,
+    id,
+  }
+};
+
+function addGoalAction (goal) {
+  return {
+    type: ADD_GOAL,
+    goal,
+  }
+};
+
+function removeGoalAction (id) {
+  return {
+    type: REMOVE_GOAL,
+    id,
+  }
+
+}
+
+/*Pure function
+1. They always return the same resutls if the same argumetnsa rea passed in
+2. They dpeend only on the argumetns passed int o them
+3. They should never produce any side effects (no state mutation, no ajax request, no manipulating the dom, etc.)
+*/
+
+//Reducer function - it takes the state and the action and reduces them to a brand new state which it returns
+//Based on the action called the reducer modifies the state in the defined way
+function todos(state = [], action){
+  switch(action.type){
+    case ADD_TODO : 
+      return state.concat([action.todo]);
+    case REMOVE_TODO :
+      return state.filter((todo)=> todo.id !== action.id);
+    case TOGGLE_TODO :
+      return state.map((todo)=> todo.id !== action.id ? todo : 
+      Object.assign({}, todo, {complete: !todo.complete})
+    );
+    default: return state;
+  };
+}
+
+//Another reducer
+function goals (state = [], action){
+  switch(action.type){
+    case ADD_GOAL:
+      return state.concat([action.goal]);
+    case REMOVE_GOAL:
+      return state.filter((goal)=> goal.id !== action.id);
+    default: return state;
+  }
+}
+
+//Combine the individual reducers which we have in the application
+//This combined reduced is passed in to the store 
+//The state = {} is used here instead of state = [], because here the state is an object {} of individual reducers
+function app (state = {}, action){
+  return {
+    todos: todos(state.todos, action),
+    goals: goals(state.goals, action)
+  }
+}
+
 //Create store and dispatch action to change the state
 //The argument take by the createStore is our reducer function
-const store = createStore(todos);
-store.dispatch(
-  {
-    type: 'ADD_TODO',
-    todo: {
-      id: 0,
-      name: 'Learn redux',
-      complete: false,
-    }
-  }
-);
+const store = createStore(app);
+
+
+
+//Some events I am dispatching
+store.dispatch(addTodoAction({
+  id: 0,
+  name: 'Walk the dog',
+  complete: false,
+}));
+
+store.dispatch(addTodoAction({
+  id: 1,
+  name: 'Wash the car',
+  complete: false,
+}));
+
+store.dispatch(addTodoAction({
+  id: 2,
+  name: 'Go to the gym',
+  complete: false,
+}));
+
+store.dispatch(removeTodoAction(1));
+
+store.dispatch(toggleTodoAction(0));
+
+store.dispatch(addGoalAction({
+  id: 0,
+  name: 'Learn redux', 
+}));
+
+store.dispatch(addGoalAction({
+  id: 1,
+  name: 'Lose 20 pounds', 
+}));
+
+store.dispatch(removeGoalAction(0));
+
 
 
