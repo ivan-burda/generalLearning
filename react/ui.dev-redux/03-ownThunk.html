@@ -91,7 +91,69 @@
             alert('An error occurred. Try again!');
           })
       }
+    };
+
+    function handleteDeleteGoal(goal){
+      return (dispatch) => {
+        dispatch(removeGoalAction(goal.id));
+        return API.deleteGoal(goal.id)
+          .catch(()=>{
+            dispatch(addGoalAction(goal));
+            alert ('An error occurred. Try again.');
+          })
+      }
+    };
+
+    function handleAddGoal(name, callback){
+      return (dispatch) => {
+        return API.saveGoal(name)
+          .then((goal)=>{
+            dispatch(addGoalAction(goal));
+            callback();
+          })
+          .catch(()=>{
+            alert('An error occured. Try again');
+          });
+      }
+    };
+
+    function handleAddTodo(name, callback){
+      return (dispatch) => {
+        return API.saveTodo(name)
+          .then((todo)=>{
+            dispatch(addTodoAction(todo))
+            callback();
+          })
+          .catch(()=>{
+            alert('There was an error. Try again.')
+          })
+      }
+    };
+
+    function handleToggle (id){
+      return (dispatch) => {
+        dispatch(toggleTodoAction(id));
+        return API.saveTodoToggle(id)
+          .catch(()=>{
+            dispatch(toggleTodoAction(id));
+            alert('An error occurred. Try again!');
+          })
+      }
+    };
+
+    function handleInitialData (){
+      return (dispatch) => {
+          //Promise.all is used to wait for multiple async actions to finish and only then do something
+          return Promise.all([
+          API.fetchTodos(),
+          API.fetchGoals(),
+        ]).then(([todos, goals])=>{
+          dispatch(receiveDataAction(todos, goals));
+        });
+      }
     }
+
+
 
     //MIDDLEWARE
     //checker, logger, thunk
@@ -126,6 +188,7 @@
       return result;
     };
 
+    //Thunk
     const thunk = (store) => (next) => (action) => {
       if(typeof action === 'function'){
         return action(store.dispatch)
@@ -215,15 +278,10 @@
       addItem = (e) => {
         e.preventDefault();
         const name = this.input.value;
-
-        return API.saveTodo(name)
-          .then((todo)=>{
-            this.props.store.dispatch(addTodoAction(todo))
-            this.input.value = '';
-          })
-          .catch(()=>{
-            alert('There was an error. Try again.')
-          })
+        this.props.store.dispatch(handleAddTodo(
+          name, 
+          ()=> this.input.value = '',
+          ));
       }
 
       removeItem = (todo) => {
@@ -231,14 +289,8 @@
       };
 
       toggleItem = (id) => {
-        this.props.store.dispatch(toggleTodoAction(id));
-
-        return API.saveTodoToggle(id)
-          .catch(()=>{
-            this.props.store.dispatch(toggleTodoAction(id));
-            alert('An error occurred. Try again!');
-          })
-      }
+        this.props.store.dispatch(handleToggle(id));
+      };
 
       render() {
         return(
@@ -264,27 +316,15 @@
       addItem = (e) => {
         e.preventDefault();
         const name = this.input.value;
-        
+        this.props.store.dispatch(handleAddGoal(
+          name,
+          () => this.input.value = '',
 
-        return API.saveGoal(name)
-          .then((goal)=>{
-            this.props.store.dispatch(addGoalAction(goal))
-            this.input.value = '';
-          })
-          .catch(()=>{
-            alert('An error occured. Try again');
-          });
+        ));
       };
 
       removeItem = (goal) => {
-        this.props.store.dispatch(removeGoalAction(goal.id));
-
-        return API.deleteGoal(goal.id)
-          .catch(()=>{
-            this.props.store.dispatch(addGoalAction(goal));
-            alert ('An error occurred. Try again.');
-          })
-
+        this.props.store.dispatch(handleteDeleteGoal(goal));
       };
 
       render() {
@@ -313,14 +353,8 @@
       componentDidMount(){
         const {store} = this.props;
 
-        //Promise.all is used to wait for multiple async actions to finish and only then do something
-        Promise.all([
-          API.fetchTodos(),
-          API.fetchGoals(),
-        ]).then(([todos, goals])=>{
-          store.dispatch(receiveDataAction(todos, goals));
-        });
-
+        store.dispatch(handleInitialData());
+   
         //An antipattern, yet here useful because we do not use setState in this component -> therefore we need to force the component to re-render
         store.subscribe(()=> this.forceUpdate());
       }
