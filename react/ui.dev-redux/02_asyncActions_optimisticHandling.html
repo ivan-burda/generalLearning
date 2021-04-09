@@ -79,22 +79,9 @@
         goals,
         todos,
       }
-    };
-
-    function handleDeleteTodo(todo){
-      return (dispatch) => {
-        dispatch(removeTodoAction(todo.id));
-        return API.deleteTodo(todo.id)
-        //However, if the API request fails, we return the item back to the redux store
-          .catch(()=>{
-            dispatch(addTodoAction(todo));
-            alert('An error occurred. Try again!');
-          })
-      }
     }
 
-    //MIDDLEWARE
-    //checker, logger, thunk
+    //Middleware
     const checker = (store ) => (next) => (action) => {
       //place for the middleware code
       if (action.type === ADD_TODO && action.todo.name.toLowerCase().indexOf('bitcoin') !== -1){
@@ -125,15 +112,6 @@
       console.groupEnd();
       return result;
     };
-
-    const thunk = (store) => (next) => (action) => {
-      if(typeof action === 'function'){
-        return action(store.dispatch)
-      };
-      return next(action)
-    }
-
-    //REDUCERS
 
     /*Pure function
     1. They always return the same resutls if the same argumetnsa rea passed in
@@ -187,7 +165,7 @@
       todos,
       goals,
       loading,
-    }), Redux.applyMiddleware(thunk, checker, logger));
+    }), Redux.applyMiddleware(checker, logger));
 
 
 
@@ -227,8 +205,18 @@
       }
 
       removeItem = (todo) => {
-        this.props.store.dispatch(handleDeleteTodo(todo));
-      };
+        //Optimistic removal
+        //We remove the item from the redux store, hoping the API request to remove it on the server will succeed
+        //The optimistic removal allows to give the user an instant feedback after clicking the removal
+        this.props.store.dispatch(removeTodoAction(todo.id));
+        
+        return API.deleteTodo(todo.id)
+        //However, if the API request fails, we return the item back to the redux store
+          .catch(()=>{
+            this.props.store.dispatch(addTodoAction(todo));
+            alert('An error occurred. Try again!');
+          })
+      }
 
       toggleItem = (id) => {
         this.props.store.dispatch(toggleTodoAction(id));

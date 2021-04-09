@@ -1,2 +1,3 @@
 Perfect explanation of the fundamental architecture: createStore, getting the state, udpating the state, subscribing, dispatching, reducers 
 The best explanation of the redux store principles I have seen so far 
+Great explanation of async request, middleware, thunk
