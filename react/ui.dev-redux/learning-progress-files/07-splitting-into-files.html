@@ -44,16 +44,7 @@
 
     //MIDDLEWARE
     //checker, logger, thunk
-    const checker = (store ) => (next) => (action) => {
-      //place for the middleware code
-      if (action.type === ADD_TODO && action.todo.name.toLowerCase().indexOf('bitcoin') !== -1){
-          return alert ("Nope. It's a bad idea")
-        };
-        if (action.type === ADD_GOAL && action.goal.name.toLowerCase().indexOf('bitcoin') !== -1){
-          return alert ("Nope. It's a bad idea")
-        };
-        return next(action);
-    };
+
 
     //This would be the middleware with ES5 functions
     // function checker (store) {
@@ -66,14 +57,7 @@
 
 
     //Logger function
-    const logger = (store) => (next) => (action) => {
-      console.group(action.type);
-      console.log('The action:', action);
-      const result = next (action);
-      console.log('The new state', store.getState());
-      console.groupEnd();
-      return result;
-    };
+   
 
     //Thunk - replaced by the imported official Thunk 
     // const thunk = (store) => (next) => (action) => {
@@ -93,43 +77,13 @@
 
     //Reducer function - it takes the state and the action and reduces them to a brand new state which it returns
     //Based on the action called the reducer modifies the state in the defined way
-    function todos(state = [], action){
-      switch(action.type){
-        case ADD_TODO : 
-          return state.concat([action.todo]);
-        case REMOVE_TODO :
-          return state.filter((todo)=> todo.id !== action.id);
-        case TOGGLE_TODO :
-          return state.map((todo)=> todo.id !== action.id ? todo : 
-          Object.assign({}, todo, {complete: !todo.complete})
-        );
-        case RECEIVE_DATA:
-          return action.todos
-        default: return state;
-      };
-    }
+
 
     //Another reducer
-    function goals (state = [], action){
-      switch(action.type){
-        case ADD_GOAL:
-          return state.concat([action.goal]);
-        case REMOVE_GOAL:
-          return state.filter((goal)=> goal.id !== action.id);
-        case RECEIVE_DATA:
-          return action.goals;
-        default: return state;
-      }
-    }
+
 
     //Store loading
-    function loading(state = true, action){
-      switch(action.type){
-        case RECEIVE_DATA:
-          return false;
-        default: return state;
-      }
-    }
+ 
 
    //Create store and dispatch action to change the state
     //The argument take by the createStore is our reducer function
@@ -146,130 +100,16 @@
   <!-- REACT APP -->
 
   <script type="text/babel">
-    function List(props){
-      return (
-        <ul>
-          {props.items.map((item)=>(
-            <li key={item.id}>
-              <span onClick={()=>props.toggle && props.toggle(item.id)} style={{textDecoration: item.complete ? 'line-through' : 'none'}}>
-                {item.name}
-              </span>
-              <button onClick={()=>props.remove(item)}>x</button>
-            </li>
-          ))}
-        </ul>
-      )
-    };
-
-    class Todos extends React.Component {
-      addItem = (e) => {
-        e.preventDefault();
-        const name = this.input.value;
-        this.props.dispatch(handleAddTodo(
-          name, 
-          ()=> this.input.value = '',
-          ));
-      }
-
-      removeItem = (todo) => {
-        this.props.dispatch(handleDeleteTodo(todo));
-      };
-
-      toggleItem = (id) => {
-        this.props.dispatch(handleToggle(id));
-      };
-
-      render() {
-        return(
-          <div>
-            <h1>Todo list</h1>
-            <input
-              type="text"
-              placeholder='Add Todo'
-              ref={(input)=> this.input = input}
-            />
-            <button onClick={this.addItem}>Add Todo</button>
-            <List
-            toggle={this.toggleItem}
-              items={this.props.todos}
-              remove={this.removeItem}
-            />
-          </div>
-        )
-      }
-    };
-
-    const ConnectedTodos = ReactRedux.connect((state)=>({
-      todos: state.todos,
-    }))(Todos);
 
 
 
-    class Goals extends React.Component {
-      addItem = (e) => {
-        e.preventDefault();
-        const name = this.input.value;
-        this.props.dispatch(handleAddGoal(
-          name,
-          () => this.input.value = '',
-        ));
-      };
 
-      removeItem = (goal) => {
-        this.props.dispatch(handleteDeleteGoal(goal));
-      };
 
-      render() {
-        return(
-          <div>
-            <h1>Goals</h1>
-            <input
-              type="text"
-              placeholder='Add Goal'
-              ref={(input)=> this.input = input}
-            />
-            <button onClick={this.addItem}>Add Goal</button>
-            <List
-              items={this.props.goals}
-              remove={this.removeItem}
-            />
-          </div>
-        )
-      }
-    }
 
-    const ConnectedGoals = ReactRedux.connect((state)=>({
-      goals: state.goals,
-    }))(Goals);
 
-    class App extends React.Component {
+    
 
-      componentDidMount(){
-        const {dispatch} = this.props;
-        dispatch(handleInitialData());
-      }
 
-      render(){
-        const {loading} = this.props;
-
-        //Return loading if loading === true; and that's is
-        if(loading === true){
-          return <h3>Loading</h3>
-        };
-
-        //Once loading is false then return this
-        return (
-          <div>
-            <ConnectedTodos/>
-            <ConnectedGoals/>
-          </div>
-        )
-      }
-    };
-
-    const ConnectedApp = ReactRedux.connect((state)=>({
-        loading: state.loading
-      }))(App);
 
     //CONNECT Library code - this gets replaced by ReactRedux.connect  
     // //Context includes Provider and Consumer. It allows to make at available in any deeper components via Consumer, rather than passing the data via compoment drilling through props
