@@ -28,112 +28,17 @@
    
     //APP CODE
 
-    //Action types
 
 
-    const ADD_GOAL = 'ADD_GOAL';
-    const REMOVE_GOAL = 'REMOVE_GOAL';
-
-    const RECEIVE_DATA = 'RECEIVE_DATA';
 
     //Action creators
     //They are used to describe any possible action which we want to make the state of our store
     //These are the only events in our entire application that will change the state of our store
    
 
-    function addGoalAction (goal) {
-      return {
-        type: ADD_GOAL,
-        goal,
-      }
-    };
+    
 
-    function removeGoalAction (id) {
-      return {
-        type: REMOVE_GOAL,
-        id,
-      }
-    };
 
-    function receiveDataAction(todos, goals){
-      return {
-        type: RECEIVE_DATA,
-        goals,
-        todos,
-      }
-    };
-
-    function handleDeleteTodo(todo){
-      return (dispatch) => {
-        dispatch(removeTodoAction(todo.id));
-        return API.deleteTodo(todo.id)
-        //However, if the API request fails, we return the item back to the redux store
-          .catch(()=>{
-            dispatch(addTodoAction(todo));
-            alert('An error occurred. Try again!');
-          })
-      }
-    };
-
-    function handleteDeleteGoal(goal){
-      return (dispatch) => {
-        dispatch(removeGoalAction(goal.id));
-        return API.deleteGoal(goal.id)
-          .catch(()=>{
-            dispatch(addGoalAction(goal));
-            alert ('An error occurred. Try again.');
-          })
-      }
-    };
-
-    function handleAddGoal(name, callback){
-      return (dispatch) => {
-        return API.saveGoal(name)
-          .then((goal)=>{
-            dispatch(addGoalAction(goal));
-            callback();
-          })
-          .catch(()=>{
-            alert('An error occured. Try again');
-          });
-      }
-    };
-
-    function handleAddTodo(name, callback){
-      return (dispatch) => {
-        return API.saveTodo(name)
-          .then((todo)=>{
-            dispatch(addTodoAction(todo))
-            callback();
-          })
-          .catch(()=>{
-            alert('There was an error. Try again.')
-          })
-      }
-    };
-
-    function handleToggle (id){
-      return (dispatch) => {
-        dispatch(toggleTodoAction(id));
-        return API.saveTodoToggle(id)
-          .catch(()=>{
-            dispatch(toggleTodoAction(id));
-            alert('An error occurred. Try again!');
-          })
-      }
-    };
-
-    function handleInitialData (){
-      return (dispatch) => {
-          //Promise.all is used to wait for multiple async actions to finish and only then do something
-          return Promise.all([
-          API.fetchTodos(),
-          API.fetchGoals(),
-        ]).then(([todos, goals])=>{
-          dispatch(receiveDataAction(todos, goals));
-        });
-      }
-    }
 
 
 
