@@ -1,34 +1,28 @@
 import * as React from 'react';
 import ConnectedTodos from './Todos';
 import ConnectedGoals from './Goals';
-import {connect} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {handleInitialData} from '../actions/shared';
 
-class App extends React.Component {
+export default function App(){
+  const dispatch = useDispatch();
+  const loading = useSelector((state)=>state.loading);
 
-  componentDidMount(){
-    const {dispatch} = this.props;
-    dispatch(handleInitialData());
-  }
 
-  render(){
-    const {loading} = this.props;
+  //Return loading if loading === true; and that's is
+  if(loading === true){
+    return <h3>Loading</h3>
+  };
 
-    //Return loading if loading === true; and that's is
-    if(loading === true){
-      return <h3>Loading</h3>
-    };
+  React.useEffect(()=>{
+    dispatch(handleInitialData())
+  }, [dispatch]);
 
-    //Once loading is false then return this
-    return (
-      <div>
-        <ConnectedTodos/>
-        <ConnectedGoals/>
-      </div>
-    )
-  }
+  //Once loading is false then return this
+  return (
+    <div>
+      <ConnectedTodos/>
+      <ConnectedGoals/>
+    </div>
+  )
 };
-
-export default connect((state)=>({
-    loading: state.loading
-  }))(App);
