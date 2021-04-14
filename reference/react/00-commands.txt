@@ -5,6 +5,9 @@
 --react-complete-guidate is up to me, this is the name of the project
 -- "--script-vesion x.x.x" is used to create a file of a specific version; however, the latest react version gets installed regardless of this
 
+npx create-react-app my-app
+
+
 npm start
 - this starts a new npm server
 
