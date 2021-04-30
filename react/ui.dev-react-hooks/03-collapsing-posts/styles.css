@@ -1,0 +1,29 @@
+.Post{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 500px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 1em;
+    margin: 0.5em;
+  }
+  
+  .Post img{
+    margin: 0 auto;
+    width: 200px;
+  }
+  
+  .Post button{
+    border: none;
+    background-color: #000;
+    color: #fff;
+    padding: 0.75em 2em;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .active{
+    border: 3px solid #000;
+  }
