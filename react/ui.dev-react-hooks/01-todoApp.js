@@ -10,40 +10,38 @@ import "./styles.css";
     2. The user can remove todo items
 */
 
-function Todo () {
-  const [todos, setTodos] = React.useState(["Ivan", "Martin"]);
-  const [inputValue, setInputValue] = React.useState();
+function generateId(){
+  return '_' + Math.random().toString(36).substr(2,9);
+}
 
-  const typing = (typedText) => setInputValue(typedText);
-  const addTodo = (newTodo)=> setTodos((todos)=>{let pole = [...todos]; pole.push(newTodo); return pole});
-  const removeTodo = (todoName) => setTodos((todos).filter((item)=>item!==todoName));
+function Todo() {
+  const [todos, setTodos] = React.useState([]);
+  const [todoNameInput, setTodoNameInput] = React.useState("");
+
+  const handleSubmit = () => {
+    setTodos((todos) => todos.concat({
+      text: todoNameInput,
+      id: generateId(),
+    }));
+    setTodoNameInput("");
+  };
+
+  const removeTodo = (id) => setTodos((todos) => todos.filter((t) => t.id !== id));
 
   return (
     <div>
-      {todos.map((todo) => (
-        <div style={{
-          display: "flex",
-          border: "1px solid blue",
-          width: "100px",
-          height: "40px",
-          justifyContent: "space-between",
-          alignItems: "center",
-          backgroundColor: "#bada55",
-          color: "#000",
-          fontWeight: "500",
-          padding: "0px 5px",
-          margin: "5px 0"
-        }
-        }>
-          <p>{todo}</p>
-          <button
-            style={{ border: "none", background: "#fff" }}
-            onClick={()=>removeTodo(todo)}>x</button>
-        </div>
+      <ul>
+      {todos.map(({text, id})=>(
+        <li key={id}>
+            <span>{text}</span>
+            <button onClick={()=>removeTodo(id)}>x</button>
+        </li>
       ))}
-      <input type="text" value={inputValue} placeholder="Todo" onChange={(e)=>typing(e.target.value)}></input>
-      <button onClick={() => {addTodo(inputValue); typing("")}}>Add todo</button>
-      
+      </ul>
+
+      <input type="text" value={todoNameInput} placeholder="Todo" onChange={(e) => setTodoNameInput(e.target.value)} />
+      <button onClick={handleSubmit}>Add todo</button>
+
     </div>
   );
 }
