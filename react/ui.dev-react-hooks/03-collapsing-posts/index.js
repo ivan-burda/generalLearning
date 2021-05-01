@@ -11,20 +11,19 @@ import "./styles.css";
 
 const Post = (props) => {
   return (
-    <div className={["Post", !props.active ? "active" : null].join(" ")}>
+    <div className={["Post", props.active ? "active" : null].join(" ")}>
       <img src={props.image} alt="Course graphics"/>
-      <p>{props.active ? `${props.text.substr(0, 100)}...` : props.text}</p>
-      {props.active ? <button onClick={props.expand}>Open</button> : null}
+      <p>{props.active ? props.text : `${props.text.substr(0, 100)}...`}</p>
+      {props.active ? null : <button onClick={props.expandPost}>Open</button>}
     </div>
   )
 }
 
 function App ({ posts }) {
   const [expandedPosts, setExpandedPosts] = React.useState([0]);
-  const [collapsedPosts, setCollapsedPosts] = React.useState([1,2]);
-  
+
   const expandPostSubmit = (id) => {
-    setExpandedPosts((expandedPosts) => console.log(expandedPosts));
+    setExpandedPosts(()=>[id]);
   };
 
   return (
@@ -34,8 +33,8 @@ function App ({ posts }) {
         key={post.id} 
         image={post.img}
         text={post.text}
-        active={expandedPosts.includes(post.id) ? false : true}
-        expand={()=> expandPostSubmit(post.id)}
+        active={expandedPosts.includes(post.id) ? true : false}
+        expandPost={() => expandPostSubmit(post.id)}
         />))}
     </div>
   )
@@ -62,5 +61,3 @@ ReactDOM.render(
   ]} />,
   rootElement
 );
-
-//      {JSON.stringify(posts, null, 2)}
