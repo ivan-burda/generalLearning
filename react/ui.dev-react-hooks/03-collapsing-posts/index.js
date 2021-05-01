@@ -11,11 +11,11 @@ import "./styles.css";
 
 const Post = (props) => {
   return (
-    <div className={["Post", props.active ? "active" : null].join(" ")}>
+    <li key={props.id} className={["Post", props.active ? "active" : null].join(" ")}>
       <img src={props.image} alt="Course graphics"/>
       <p>{props.active ? props.text : `${props.text.substr(0, 100)}...`}</p>
       {props.active ? null : <button onClick={props.expandPost}>Open</button>}
-    </div>
+    </li>
   )
 }
 
@@ -27,7 +27,7 @@ function App ({ posts }) {
   };
 
   return (
-    <div>
+    <ul>
       {posts.map((post)=>(
         <Post 
         key={post.id} 
@@ -36,7 +36,7 @@ function App ({ posts }) {
         active={expandedPosts.includes(post.id) ? true : false}
         expandPost={() => expandPostSubmit(post.id)}
         />))}
-    </div>
+    </ul>
   )
 }
 
