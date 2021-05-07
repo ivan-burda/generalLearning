@@ -3,6 +3,29 @@ import ReactDOM from "react-dom";
 
 import "./styles.css";
 
+
+/* -------------------------------------------------- */
+/* Logical steps */
+/* 
+1)create a reference, such as:
+const passRef = React.useRef();
+
+2)attach the ref to an element
+<input
+    placeholder="password"
+    type="text"
+    ref={passRef}
+/>
+
+3)Work with the reference
+Get the referenced element:
+const password = passRef.current; // <input placeholder="password" type="text"></input>
+const password = passRef.current.value; // return the value typed in to the password input field
+
+*/
+
+/* -------------------------------------------------- */
+
 /*
   Instructions:
     You're given the UI for a basic form. Your task is to 
