@@ -26,7 +26,7 @@ switch(action.type){
             ...state,
             [action.authedUser]: {
                 ...user,
-                answers: users.answers.contact([action.id])
+                answers: user.answers.concat([action.id])
             }
         }
     default:
