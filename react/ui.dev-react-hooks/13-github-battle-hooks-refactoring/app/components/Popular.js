@@ -83,13 +83,13 @@ ReposGrid.propTypes = {
 function popularReducer (state, action){
   if(action.type === 'success'){
     return{
-      state,
+      ...state,
       [action.selectedLanguage]: action.repos,
       error: null
     }
   } else if(action.type === 'error'){
     return {
-      state,
+      ...state,
       error: action.error.message
     }
   }else{
@@ -106,7 +106,7 @@ export default function Popular(){
     }
   );
 
-  const fetchedLanguages = React.useRef([])
+  const fetchedLanguages = React.useRef([]);
 
   React.useEffect(()=>{
     if(fetchedLanguages.current.includes(selectedLanguage)===false){

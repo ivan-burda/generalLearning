@@ -16,9 +16,17 @@ const Results = React.lazy(()=> import('./components/Results'));
 //-Lifecycle
 //-UI
 
+/* Background colors */
+const darkBackgroundColor = '#1c2022';
+const lightBackgroundColor = '#ffffff';
+
 function App () {
   const [theme, setTheme ] = React.useState("light");
   const toggleTheme = ()=> setTheme((theme)=>theme === "light" ? "dark" : "light");
+
+  React.useEffect(()=>{
+    document.body.style = `background-color: ${theme === 'light' ? lightBackgroundColor  : darkBackgroundColor}`;
+  },[theme]);
    
   return(
     <Router>
