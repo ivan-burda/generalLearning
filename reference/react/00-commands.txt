@@ -68,3 +68,13 @@ Redux Devtools - Chrome extension (remotedev.io)
 
 //Redux thunk - a middleware for being able to handle async code 
 npm install --save redux-thunk
+
+
+Create react app 
+https://create-react-app.dev/
+
+//React icons 
+https://react-icons.github.io/react-icons/
+
+React router dom 
+https://reactrouter.com/web/api/Hooks/useparams
