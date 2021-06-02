@@ -1,3 +1,13 @@
+{
+  type: "ADD_TODO",
+  todo: {
+    id: 0,
+    name: "Learn Redux"
+  }
+}
+
+
+
 function createStore() {
   let state;
   let listeners = [];
