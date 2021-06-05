@@ -1,29 +1,3 @@
-// ==============LIBRARY CODE==============
-//--Store
-/* function createStore(app) {
-  let state;
-  let listeners = [];
-
-  const getState = () => state;
-  const subscribe = (listener) => {
-    listeners.push(listener);
-    return () => {
-      listeners = listeners.filter((l) => l !== listener);
-    };
-  };
-
-  const dispatch = (action) => {
-    state = app(state, action);
-    listeners.forEach((listener)=>listener());
-  }
-
-  return {
-    getState,
-    subscribe,
-    dispatch
-  };
-} */
-
 // ==============APP CODE==============
 const ADD_TODO = "ADD_TODO";
 const REMOVE_TODO = "REMOVE_TODO";
@@ -65,7 +39,29 @@ function removeGoalAction(id){
     type: REMOVE_GOAL,
     id
   }
+};
+
+//MIDDLEWARE
+
+const checker = (store) => (next) => (action) =>{
+  if(action.type === ADD_TODO && action.todo.name.toLowerCase().indexOf('bitcoin') !==-1){
+    return alert("Nope. Do not go into BTC!");
+  }
+  if(action.type === ADD_GOAL && action.goal.name.toLowerCase().indexOf('bitcoin') !==-1){
+    return alert("Nope. Do not go into BTC!");
+  }
+  return next(action);
+};
+
+const logger = (store) => (next) => (action) => {
+  console.group(action.type);
+  console.log("Action:", action);
+  const result = next(action);
+  console.log("The new state: ", store.getState());
+  console.groupEnd();
+  return result;
 }
+
 
 
 // --Reducers
@@ -94,18 +90,12 @@ function todos(state=[], action){
    }
  }
 
-/*  function app(state = {}, action){
-  return  {
-    todos: todos(state.todos, action),
-    goals: goals(state.goals, action)
-  }
- } */
 
 //--Initiate a store instance
 const store = Redux.createStore(Redux.combineReducers({
   todos,
   goals
-})); //the argument passed into the createStore is the reducer
+}), Redux.applyMiddleware(checker, logger)); //the argument passed into the createStore is the reducer
 
 store.subscribe(()=>{
   const {goals, todos} = store.getState();
