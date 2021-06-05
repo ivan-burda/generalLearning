@@ -62,8 +62,6 @@ const logger = (store) => (next) => (action) => {
   return result;
 }
 
-
-
 // --Reducers
 function todos(state=[], action){
   switch(action.type){
@@ -97,52 +95,6 @@ const store = Redux.createStore(Redux.combineReducers({
   goals
 }), Redux.applyMiddleware(checker, logger)); //the argument passed into the createStore is the reducer
 
-store.subscribe(()=>{
-  const {goals, todos} = store.getState();
-  document.getElementById('todos').innerHTML = "";
-  document.getElementById('goals').innerHTML = "";
-  todos.forEach(addTodoToDOM);
-  goals.forEach(addGoalToDOM);
-})
-
-// ==============DOM CODE==============
-function createRemoveButton(onClick){
-  const removeBtn = document.createElement('button');
-  removeBtn.innerHTML = 'x';
-  removeBtn.addEventListener('click', onClick);
-  return removeBtn;
-};
-
-function addTodoToDOM(todo){
-  const node = document.createElement('li');
-  const text = document.createTextNode(todo.name);
-
-  const removeBtn = createRemoveButton(()=>{
-    store.dispatch(removeTodoAction(todo.id));
-  });
-
-  node.appendChild(text);
-  node.appendChild(removeBtn);
-  node.style.textDecoration = todo.complete ? 'line-through' : 'none';
-  node.addEventListener('click', ()=>{
-    store.dispatch(toggleTodoAction(todo.id));
-  })
-  document.getElementById('todos').appendChild(node);
-};
-
-function addGoalToDOM(goal){
- const node = document.createElement('li');
- const text = document.createTextNode(goal.name);
- const removeBtn = createRemoveButton(()=>{
-   store.dispatch(removeGoalAction(goal.id));
- })
-
- node.appendChild(text);
- node.appendChild(removeBtn);
- document.getElementById('goals').appendChild(node);
-}
-
-
 //ID generator
 function generateId (){
   return Math.random().toString(36).substring(2) + (new Date()).getTime().toString(36);
@@ -170,7 +122,3 @@ function addGoal(){
   }))
 }
 
-
-
-document.getElementById('todoBtn').addEventListener('click', addTodo);
-document.getElementById('goalBtn').addEventListener('click', addGoal);
