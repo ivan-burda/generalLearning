@@ -1,6 +1,9 @@
 import * as React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { BrowserRouter as Router } from "react-router-dom";
 import { handleInitialData } from "../actions/shared";
+import Leaderboard from "../components/Leaderboard";
+import Dashboard from "../components/Dashboard";
 
 export default function App() {
   const dispatch = useDispatch();
@@ -12,5 +15,9 @@ export default function App() {
 
   const store = useSelector((store) => store);
   console.log("Store", store);
-  return <div className="container">{loading === true ? null : <div>Redux Polls</div>}</div>;
+  return (
+    <Router>
+      <div className="container">{loading === true ? null : <Dashboard />}</div>
+    </Router>
+  );
 }
