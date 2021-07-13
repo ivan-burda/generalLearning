@@ -1,0 +1,2 @@
+https://answers.netlify.com/t/new-ci-true-build-configuration-treating-warnings-as-errors-because-process-env-ci-true/14434
+https://dev.to/kapi1/solved-treating-warnings-as-errors-because-of-process-env-ci-true-bk5
