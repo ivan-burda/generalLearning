@@ -108,11 +108,19 @@ const newsletters = [
 
 function Issue({ match }) {
   const publicationItem = newsletters.find((item) => item.id === match.params.itemId);
-  const issueDetails = publication.issues.find((issue) => issue.id === match.params.issueId);
+  const issueItem = publicationItem.issues.find((issue) => issue.id === match.params.issueId);
   return (
     <div>
-      <h3></h3>
-      <p></p>
+      <h3>{issueItem.name}</h3>
+      <ul>
+        {issueItem.links.map((link) => (
+          <li>
+            <a href={`${link.url}`} target="_blank">
+              {link.title}
+            </a>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
@@ -132,7 +140,7 @@ function Publication({ match }) {
         ))}
       </ul>
       <hr />
-      <Route patch={`${match.path}/:issueId`} component={Issue} />
+      <Route path={`${match.path}/:issueId`} component={Issue} />
     </div>
   );
 }
