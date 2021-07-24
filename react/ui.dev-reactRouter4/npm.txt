@@ -1,0 +1,22 @@
+npm install query-string
+import queryString from 'query-string';
+const values = queryString.parse(this.props.location.search);
+
+export default function App() {
+  return (
+    <Router>
+      <div>
+        <h1>Users</h1>
+        <ul>
+          <li><Link to='/?id=tylermcginnis'>Tyler</Link></li>
+          <li><Link to='/?id=sarah_edo'>Sarah</Link></li>
+          <li><Link to='/?id=dan_abramov'>Dan</Link></li>
+        </ul>
+
+        <hr />
+
+        <Route path='/' component={User} />
+      </div>
+    </Router>
+  );
+}
