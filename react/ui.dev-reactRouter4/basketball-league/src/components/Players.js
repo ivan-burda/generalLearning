@@ -31,7 +31,7 @@ export default class Players extends Component {
     return (
       <div className="container two-column">
         <Sidebar loading={loading} title="Players" list={players.map((player) => player.name)} {...this.props} />
-        {loading === false && location.pathname === "/ players" ? <div className="sidebar-instruction">Select a player</div> : null}
+        {loading === false && location.pathname === "/players" ? <div className="sidebar-instruction">Select a player</div> : null}
         <Route
           path={`${match.url}/:playerId`}
           render={({ match }) => {
