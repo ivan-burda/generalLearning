@@ -1,7 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
-export default class Loading extends Component() {
+export default class Loading extends React.Component {
   static propTypes = {
     text: PropTypes.string.isRequired,
   };
@@ -23,7 +23,7 @@ export default class Loading extends Component() {
         : this.setState(({ text }) => ({
             text: text + ".",
           }));
-    });
+    }, 300);
   }
 
   componentWillUnmount() {
