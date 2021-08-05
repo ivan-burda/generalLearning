@@ -20,7 +20,7 @@
 */
 
 import React from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import styles from "./styles.css";
 
@@ -198,8 +198,10 @@ class App extends React.Component {
 
                     <hr />
 
-                    <Route exact path="/" component={Home} />
-                    <Route path="/newsletters" component={Newsletters} />
+                    <Switch location={location}>
+                      <Route exact path="/" component={Home} />
+                      <Route path="/newsletters" component={Newsletters} />
+                    </Switch>
                   </div>
                 </CSSTransition>
               </TransitionGroup>
