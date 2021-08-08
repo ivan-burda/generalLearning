@@ -64,7 +64,6 @@ class App extends React.Component {
               <Link to="/settings">Settings</Link>
             </li>
           </ul>
-
           <hr />
 
           <Route path="/" exact component={Home} />
