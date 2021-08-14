@@ -20,3 +20,6 @@ export default function App() {
     </Router>
   );
 }
+
+
+npm install react-transition-group
