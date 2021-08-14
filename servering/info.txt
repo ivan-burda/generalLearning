@@ -1,0 +1,8 @@
+Run my own server 
+https://www.digitalocean.com/
+
+Setup a reverse proxy 
+https://cloud.google.com/community/tutorials/nginx-reverse-proxy-docker
+
+GCP 
+https://console.cloud.google.com/
