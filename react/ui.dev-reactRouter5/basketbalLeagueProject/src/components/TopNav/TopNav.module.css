@@ -1,0 +1,16 @@
+.Nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Nav a {
+  text-transform: uppercase;
+  padding: 0.5em 0em;
+  font-weight: 600;
+}
+
+.Nav a + a {
+  margin-left: 1em;
+}
