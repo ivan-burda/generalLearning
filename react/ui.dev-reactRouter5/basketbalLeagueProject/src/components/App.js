@@ -1,16 +1,33 @@
 import * as React from "react";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 
 import TopNav from "./TopNav/TopNav";
+import TeamLogo from "./TeamLogo";
 
 import "./App.css";
+
+const teamNames = ["bulls", "foxes", "hedgehogs", "koalas", "lemurs"];
 
 export default function App() {
   return (
     <Router>
       <div className="App">
         <TopNav />
-        <div>Hash History Basketball League</div>
+        <div className="app-main">
+          <div className="app-main-welcome">
+            <p>Hash History Basketball League</p>
+          </div>
+          <div className="app-main-subtitle">
+            <p>Select a team</p>
+          </div>
+          <div className="team-selection">
+            {teamNames.map((team) => (
+              <Link to={team} key={team}>
+                <TeamLogo id={team} width="120px" />
+              </Link>
+            ))}
+          </div>
+        </div>
       </div>
     </Router>
   );

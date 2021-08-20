@@ -3,6 +3,7 @@
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding: 1em 0;
 }
 
 .Nav a {

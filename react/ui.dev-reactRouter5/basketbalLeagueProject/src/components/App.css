@@ -3,3 +3,27 @@
   max-width: 1024px;
   margin: 0 auto;
 }
+
+.app-main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-main-welcome {
+  font-size: 6rem;
+  text-align: center;
+  font-weight: 700;
+  margin: 0.5em 0;
+}
+
+.app-main-subtitle {
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 700;
+  margin: 0.5em 0;
+}
+
+.team-selection {
+}

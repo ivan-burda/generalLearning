@@ -19,6 +19,11 @@
   box-sizing: inherit;
 }
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 html {
   font-family: proxima-nova, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen-Sans, Ubuntu, Cantarell, Helvetica Neue, sans-serif;
   text-rendering: optimizeLegibility;
