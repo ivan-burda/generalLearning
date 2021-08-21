@@ -5,6 +5,7 @@ import usePlayers from "../hooks/usePlayers";
 import Sidebar from "./Sidebar";
 import Loading from "./Loading";
 import slug from "slug";
+import { TransitionGroup, CSSTransition } from "react-transition-group";
 
 function Player({ players }) {
   const { playerId } = useParams();
@@ -48,6 +49,7 @@ function Player({ players }) {
 
 export default function Players() {
   const { search } = useLocation();
+  const location = useLocation();
   const { path } = useRouteMatch();
 
   const team = search ? parse(search).teamId : null;
@@ -61,14 +63,18 @@ export default function Players() {
   return (
     <div className="container two-column">
       <Sidebar title="Players" list={players.map((player) => player.name)} />
-      <Switch>
-        <Route path={`${path}/:playerId`}>
-          <Player players={players} />
-        </Route>
-        <Route path="*">
-          <div className="sidebar-instruction">Select a player</div>
-        </Route>
-      </Switch>
+      <TransitionGroup className="container two-column">
+        <CSSTransition timeout={500} classNames="fade" key={location.key}>
+          <Switch location={location}>
+            <Route path={`${path}/:playerId`}>
+              <Player players={players} />
+            </Route>
+            <Route path="*">
+              <div className="sidebar-instruction">Select a player</div>
+            </Route>
+          </Switch>
+        </CSSTransition>
+      </TransitionGroup>
     </div>
   );
 }
