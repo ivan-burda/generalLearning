@@ -1,0 +1,40 @@
+:root {
+  font-size: 1rem;
+  --main-bg-color: #bada55;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.box {
+  background-color: var(--main-bg-color);
+  font-size: 0.9rem;
+  width: 450px;
+  border: 1px solid black;
+  padding: 0.25em 0.5em;
+  margin: 0 auto;
+  margin-bottom: 1em;
+}
+
+.alternative {
+  --main-bg-color: #bdf100;
+  background-color: var(--main-bg-color);
+}
+
+.box h1 {
+  font-size: 1.2rem;
+}
+
+@media screen and (max-width: 600px) {
+  :root {
+    font-size: 0.8rem;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  :root {
+    font-size: 1.2rem;
+  }
+}
