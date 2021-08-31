@@ -1,0 +1,13 @@
+echo 
+man 1 man or just man man -> opens information about the manual
+man -k ls -> searches the manual for anything such as ls 
+man 1 ls -> opens the manual page about any of the terms returned by the search 
+
+xargs -> converts a standard output into a command parameter so that it can be consumed by a piped comand which does not accept standard outputs but only command line arguments
+
+Task1: 
+ls /etc 1> file1.txt 
+ls /run 1> file2. txt 
+
+Task2: 
+cat file1.txt file2.txt | tee unsorted.txt | sort -r 1> reversed.txt 
