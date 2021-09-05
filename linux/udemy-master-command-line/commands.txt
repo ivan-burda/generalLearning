@@ -21,3 +21,16 @@ file??.txt
 file[A-Z].txt, A-D, a-z, 123abc, 1-9, etc.
 file[0-9][A-Z][a-z][0,1]
 file*.txt -> will match file with anything after it and followed by .txt 
+
+CREATING FILES AND DIRECTORIES 
+Brace expansion: {}
+Range: x..y
+touch 
+mkdir 
+touch ~/Documents/myfile.txt
+mkdir ~/Pictures/holiday
+mkdir ~/Pictures/holiday/Rakousko/Strobl -> this will create also subfolders 
+mkdir {ivan,stepan,zdenek}_{hobbies,photos} -> will create hobbies and photos folders for each of the brothers
+mkdir {ivan,stepan,zdenek}_{1..5} -> .. is used for a range 
+touch {ivan,stepan,zdenek}_{1..5}/file{1..10}.txt -> will create 10 txt files in each of the folders 
+ls -al {ivan,stepan}_{1..2} -> will list files in all the matched folders
