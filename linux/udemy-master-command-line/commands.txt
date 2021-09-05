@@ -1,3 +1,4 @@
+I/O REDIRECTING
 echo 
 man 1 man or just man man -> opens information about the manual
 man -k ls -> searches the manual for anything such as ls 
@@ -11,3 +12,12 @@ ls /run 1> file2. txt
 
 Task2: 
 cat file1.txt file2.txt | tee unsorted.txt | sort -r 1> reversed.txt 
+
+WILDCARDS 
+*.txt
+D*
+file?.txt 
+file??.txt 
+file[A-Z].txt, A-D, a-z, 123abc, 1-9, etc.
+file[0-9][A-Z][a-z][0,1]
+file*.txt -> will match file with anything after it and followed by .txt 
