@@ -34,3 +34,9 @@ mkdir {ivan,stepan,zdenek}_{hobbies,photos} -> will create hobbies and photos fo
 mkdir {ivan,stepan,zdenek}_{1..5} -> .. is used for a range 
 touch {ivan,stepan,zdenek}_{1..5}/file{1..10}.txt -> will create 10 txt files in each of the folders 
 ls -al {ivan,stepan}_{1..2} -> will list files in all the matched folders
+
+DELETING 
+rm -r myfolder = deletes the folder and all its content 
+rm -ri myfolder = asks for a permission to delete 
+rmdir delfolder/* = delete everything inside of the delfolder; however it deletes only empty folder 
+rmdir delfolder = delete the delfolder itself; however, this will work only if it is empty 
