@@ -40,3 +40,8 @@ rm -r myfolder = deletes the folder and all its content
 rm -ri myfolder = asks for a permission to delete 
 rmdir delfolder/* = delete everything inside of the delfolder; however it deletes only empty folder 
 rmdir delfolder = delete the delfolder itself; however, this will work only if it is empty 
+
+COPYING 
+cp ~/Documents/file1.txt file2.txt = copies the content of file1 to file2; If I am already in Documents, then without ~/Documents/
+cp file1.txt file2.txt myfolder/ ; cp file* myfolder/ 
+cp -r copy-me/ destination/  = copies a folder and also its content (r = recursively) into another folder
