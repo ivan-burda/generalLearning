@@ -45,3 +45,36 @@ COPYING
 cp ~/Documents/file1.txt file2.txt = copies the content of file1 to file2; If I am already in Documents, then without ~/Documents/
 cp file1.txt file2.txt myfolder/ ; cp file* myfolder/ 
 cp -r copy-me/ destination/  = copies a folder and also its content (r = recursively) into another folder
+
+RENAMING AND MOVING 
+mv oldname.txt newname.txt
+mv oldfolder/ newfolder/
+mv newfolder/* . = moves everything in newfolder to the current location 
+mv newfolder/ ~/Documents/
+mv ~/Documents/myfolder/ ~/Desktop/jackpot = moves myfolder to the desktop and renames it to jackpot 
+
+EDITING AND CREATING FILES with NANO
+nano mynewtextfile.txt = creates a new file 
+nano myexistingfile.txt = opens an existing file 
+sudo nano /etc/nanorc = editing nano settings; this requires admin rights therefore sudo 
+
+LOCATE
+sudo apt install locate 
+sudo apt install mlocate 
+
+locate *.conf 
+locate *.txt 
+locate -i *.TXT = -i stands for case insensitive
+locate --limit 3 *.txt = --limit returns just 3 results 
+locate -S = returns information about the database 
+locate -e (--existing) = makes sure the files in the db really still exist 
+sudo updatedb = updates database of files so that we get uptodate results when using locate 
+
+
+FIND 
+find = list all files in the current or the specified dir; goes as deep as possible 
+find . -maxdepth 1 = find all files from this location in the max depth 1
+find . -type f = list all files in the contained folders 
+find . -type d = list all contained folders
+find . -maxdepth 2 -type f
+find /etc -maxdepth 2 -type d 
