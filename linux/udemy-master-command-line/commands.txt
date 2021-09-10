@@ -78,3 +78,11 @@ find . -type f = list all files in the contained folders
 find . -type d = list all contained folders
 find . -maxdepth 2 -type f
 find /etc -maxdepth 2 -type d 
+find . -name "searchedFile.txt" = searches for the location of a specific file anywhere deeper 
+find . -maxdepth 2 -name "*.txt"
+-iname = searches by name but in the case-insensitive way 
+
+find / -type -f -size +100k = returns all files on the drive bigger than 100kb
+find / -type -f -size +100k  -size -5M = bigger that 100k but smaller than 5M
+find / -type -f -size +100k  -size -5M | wc -l = will count the lines 
+find / -type -f -size -100k -o -size +5M = -o means or
