@@ -82,7 +82,17 @@ find . -name "searchedFile.txt" = searches for the location of a specific file a
 find . -maxdepth 2 -name "*.txt"
 -iname = searches by name but in the case-insensitive way 
 
-find / -type -f -size +100k = returns all files on the drive bigger than 100kb
-find / -type -f -size +100k  -size -5M = bigger that 100k but smaller than 5M
-find / -type -f -size +100k  -size -5M | wc -l = will count the lines 
-find / -type -f -size -100k -o -size +5M = -o means or
+find / -type f -size +100k = returns all files on the drive bigger than 100kb
+find / -type f -size +100k  -size -5M = bigger that 100k but smaller than 5M
+find / -type f -size +100k  -size -5M | wc -l = will count the lines 
+find / -type f -size -100k -o -size +5M = -o means or
+
+DO SOMETHING WITH EVERY FILE AFTER THE FIND
+sudo find / -type f -size +100k -size -5M -exec cp {} ~/Desktop/my_folder
+exec = asks for executing a command on each involved (found) file \;
+ok = can be used instead of exec, however, will ask for a confirmation of every operation
+cp {} = copy each
+\; = finish after you are done with all 
+
+touch haystack/folder$(shuf -i 1-500 -n 1)/needle.txt = creates a needle.txt file in a random folder
+find haystack/ -type f -name "needle.txt" -exec mv {} ~/Desktop \;
