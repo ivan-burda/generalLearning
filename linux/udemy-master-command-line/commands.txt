@@ -13,6 +13,10 @@ ls /run 1> file2. txt
 Task2: 
 cat file1.txt file2.txt | tee unsorted.txt | sort -r 1> reversed.txt 
 
+CHECKING A FILE 
+file ourarchive.tar = prints info about what kind of file it is. In linux the extensions are irrelevant, so we cannot rely on them to judge the file type 
+
+
 WILDCARDS 
 *.txt
 D*
@@ -115,3 +119,74 @@ cat mylongfile.txt | head -n 3 = will show just the first 3 lines of the file; i
 head -n 20 mylongfile.txt 
 
 head -n 20 mylongfile.txt | tail -n 3 = this will return last 3 lines from the first 20 lines 
+
+
+SORTING 
+sort names.txt
+sort names.txt > sorted.txt 
+sort -r names.txt  = reversed sort
+sort -n numbers.txt = sorts numbers 
+sort -nr numbers.txt = sort numbers in the reversed order
+sort -u numbers.txt = sorts and removes duplicities 
+sort -ru numbers.txt = sorts numbers and removes duplicities
+
+ADVANCED SORTING 
+ls -l /etc | head -n 20 | sort -k 5n = we pipe the results of ls into the sort function 
+-k = key value by which to sort; 5 = by the column number 5; it is a number values so also: n 
+-6M = if we are sorting by date (e.g. in the 6th column) and add M, then the sorting will be done by month 
+
+
+SEARCHING FILE CONTENT 
+grep e mytext.txt 
+grep -i anna annakarenina.txt = looks up for all occurrences of the word "anna", the -i applies case-insensitive searching
+wc -l mytext.txt = counts the number of lines 
+grep -i "our boys" annakarenina.txt = searching for a string 
+
+grep -c gadsby gadsby.txt = -c counts the results
+grep -ic gadsby gadsby.txt = i is used for case insensitive searchingg
+grep -v gadsby gadsby.txt = -v is used to get a number of lines which do not contain something 
+
+ls hellofolder/ | grep hello.txt = tells me whether hello.txt is contained among the result of ls by returning it or not 
+ls -lF / | grep root = returns all ls results which contain "root", so grep is great for filtering results 
+
+ls -F /etc | grep -v / = highlight all folders in the /etc and then use grep to return all results which do not have / in their name, i.e. which are not folders 
+
+ls -F /etc | grep -v / | sort -r > file.txt
+
+man -l print | grep -v 1 | sort | less
+
+ARCHIVING & COMPRESSING FILES 
+tar -cvf myarchive.tar file[1-3].txt
+-c = create
+-v = verbose, i.e. inform me about what you are doing
+-f = accept files
+
+tar -tf myarchive.tar = shows the content of a tarball archive without extracting it 
+-t = test 
+-f = file
+
+tar -xvf myarchive.tar = extracts an archive 
+-x = extract 
+-f = file 
+-v = verbose 
+
+gzip = faster, less compression power
+bzip2 = slower, more compression power
+
+gzip myarchive.tar
+gunzip myarchive.tar.gz
+
+bzip2 myarchive.tar 
+bunzip2 myarchive.tar.bz2 
+
+zip myziparchive file[1-3].txt
+unzip myziparchive.zip 
+
+Archive & compress at once 
+tar -cvzf ourarchive.tar.gz file{1-3}.txt 
+-z = gzip the file as well; make sure that just for convention the .gz extension is added to the filename 
+-j = bzip2 the file
+
+Extract and unpack the archive at once 
+tar -xvzf ourarchive.tar.gz (from gzip)
+tar -xvjf ourarchive.tar.bz2 (from bzip2)
