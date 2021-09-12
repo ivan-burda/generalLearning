@@ -206,3 +206,5 @@ locate top_secret.txt > ~/secret_place.txt
 sudo find / -maxdepth 4 -type f -size +1M
 sudo find / -maxdepth 4 -type f -size +1M -exec ls -lh {} \;
 sudo find / -maxdepth 4 -type f -size +1M -exec ls -lh {} \; | sort -k 5nr > filesizes.txt 
+
+
