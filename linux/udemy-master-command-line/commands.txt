@@ -1,4 +1,4 @@
-I/O REDIRECTING
+=======I/O REDIRECTING
 echo 
 man 1 man or just man man -> opens information about the manual
 man -k ls -> searches the manual for anything such as ls 
@@ -13,11 +13,12 @@ ls /run 1> file2. txt
 Task2: 
 cat file1.txt file2.txt | tee unsorted.txt | sort -r 1> reversed.txt 
 
-CHECKING A FILE 
+
+=======CHECKING A FILE 
 file ourarchive.tar = prints info about what kind of file it is. In linux the extensions are irrelevant, so we cannot rely on them to judge the file type 
 
 
-WILDCARDS 
+=======WILDCARDS 
 *.txt
 D*
 file?.txt 
@@ -26,7 +27,7 @@ file[A-Z].txt, A-D, a-z, 123abc, 1-9, etc.
 file[0-9][A-Z][a-z][0,1]
 file*.txt -> will match file with anything after it and followed by .txt 
 
-CREATING FILES AND DIRECTORIES 
+=======CREATING FILES AND DIRECTORIES 
 Brace expansion: {}
 Range: x..y
 touch 
@@ -39,30 +40,30 @@ mkdir {ivan,stepan,zdenek}_{1..5} -> .. is used for a range
 touch {ivan,stepan,zdenek}_{1..5}/file{1..10}.txt -> will create 10 txt files in each of the folders 
 ls -al {ivan,stepan}_{1..2} -> will list files in all the matched folders
 
-DELETING 
+=======DELETING 
 rm -r myfolder = deletes the folder and all its content 
 rm -ri myfolder = asks for a permission to delete 
 rmdir delfolder/* = delete everything inside of the delfolder; however it deletes only empty folder 
 rmdir delfolder = delete the delfolder itself; however, this will work only if it is empty 
 
-COPYING 
+=======COPYING 
 cp ~/Documents/file1.txt file2.txt = copies the content of file1 to file2; If I am already in Documents, then without ~/Documents/
 cp file1.txt file2.txt myfolder/ ; cp file* myfolder/ 
 cp -r copy-me/ destination/  = copies a folder and also its content (r = recursively) into another folder
 
-RENAMING AND MOVING 
+=======RENAMING AND MOVING 
 mv oldname.txt newname.txt
 mv oldfolder/ newfolder/
 mv newfolder/* . = moves everything in newfolder to the current location 
 mv newfolder/ ~/Documents/
 mv ~/Documents/myfolder/ ~/Desktop/jackpot = moves myfolder to the desktop and renames it to jackpot 
 
-EDITING AND CREATING FILES with NANO
+=======EDITING AND CREATING FILES with NANO
 nano mynewtextfile.txt = creates a new file 
 nano myexistingfile.txt = opens an existing file 
 sudo nano /etc/nanorc = editing nano settings; this requires admin rights therefore sudo 
 
-LOCATE
+=======LOCATE
 sudo apt install locate 
 sudo apt install mlocate 
 
@@ -75,7 +76,7 @@ locate -e (--existing) = makes sure the files in the db really still exist
 sudo updatedb = updates database of files so that we get uptodate results when using locate 
 
 
-FIND 
+=======FIND 
 find = list all files in the current or the specified dir; goes as deep as possible 
 find . -maxdepth 1 = find all files from this location in the max depth 1
 find . -type f = list all files in the contained folders 
@@ -91,7 +92,7 @@ find / -type f -size +100k  -size -5M = bigger that 100k but smaller than 5M
 find / -type f -size +100k  -size -5M | wc -l = will count the lines 
 find / -type f -size -100k -o -size +5M = -o means or
 
-DO SOMETHING WITH EVERY FILE AFTER THE FIND
+=======DO SOMETHING WITH EVERY FILE AFTER THE FIND
 sudo find / -type f -size +100k -size -5M -exec cp {} ~/Desktop/my_folder
 exec = asks for executing a command on each involved (found) file \;
 ok = can be used instead of exec, however, will ask for a confirmation of every operation
@@ -102,7 +103,7 @@ touch haystack/folder$(shuf -i 1-500 -n 1)/needle.txt = creates a needle.txt fil
 find haystack/ -type f -name "needle.txt" -exec mv {} ~/Desktop \;
 
 
-CONCATENATING FILES, VIEWING FILES 
+=======CONCATENATING FILES, VIEWING FILES 
 cat myfile.txt = will print the content of the file 
 cat file[1-5].txt > fullmessage.txt = will concatenate the files into a new file 
 echo "Abc" >> fullmessage.txt = this will append the abc into the existing content, rather than overwriting it 
@@ -121,7 +122,7 @@ head -n 20 mylongfile.txt
 head -n 20 mylongfile.txt | tail -n 3 = this will return last 3 lines from the first 20 lines 
 
 
-SORTING 
+=======SORTING 
 sort names.txt
 sort names.txt > sorted.txt 
 sort -r names.txt  = reversed sort
@@ -130,13 +131,16 @@ sort -nr numbers.txt = sort numbers in the reversed order
 sort -u numbers.txt = sorts and removes duplicities 
 sort -ru numbers.txt = sorts numbers and removes duplicities
 
-ADVANCED SORTING 
+=======ADVANCED SORTING 
 ls -l /etc | head -n 20 | sort -k 5n = we pipe the results of ls into the sort function 
 -k = key value by which to sort; 5 = by the column number 5; it is a number values so also: n 
 -6M = if we are sorting by date (e.g. in the 6th column) and add M, then the sorting will be done by month 
+sudo find / -maxdepth 4 -type f -size +1M -exec ls -lh {} \; | sort -k 5nr > filesizes.txt 
+5n = 5th column, number format 
+5h = 5th column, human-readable number format 
 
 
-SEARCHING FILE CONTENT 
+=======SEARCHING FILE CONTENT 
 grep e mytext.txt 
 grep -i anna annakarenina.txt = looks up for all occurrences of the word "anna", the -i applies case-insensitive searching
 wc -l mytext.txt = counts the number of lines 
@@ -155,7 +159,7 @@ ls -F /etc | grep -v / | sort -r > file.txt
 
 man -l print | grep -v 1 | sort | less
 
-ARCHIVING & COMPRESSING FILES 
+=======ARCHIVING & COMPRESSING FILES 
 tar -cvf myarchive.tar file[1-3].txt
 -c = create
 -v = verbose, i.e. inform me about what you are doing
@@ -190,3 +194,15 @@ tar -cvzf ourarchive.tar.gz file{1-3}.txt
 Extract and unpack the archive at once 
 tar -xvzf ourarchive.tar.gz (from gzip)
 tar -xvjf ourarchive.tar.bz2 (from bzip2)
+
+TASKS: 
+1)
+mkdir super_secret_stuff 
+echo "Secret message" > ~/Desktop/super_secret_stuff/top_secret.txt
+sudo updatedb 
+locate top_secret.txt > ~/secret_place.txt
+
+2)
+sudo find / -maxdepth 4 -type f -size +1M
+sudo find / -maxdepth 4 -type f -size +1M -exec ls -lh {} \;
+sudo find / -maxdepth 4 -type f -size +1M -exec ls -lh {} \; | sort -k 5nr > filesizes.txt 
