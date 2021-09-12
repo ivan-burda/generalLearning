@@ -3,7 +3,7 @@ Create a text file with nano, such as: scriptname.sh
 Write the very first line to indicate this is a bash script: 
 #!/bin/bash = this must be the 
 
-fyi: Terminal tells us the interpreter route if we type: which bash
+fyi: Terminal tells us the interpreter route if we type: which bash 
 
 RUN SCRIPTS 
 bash scriptname.sh = this will run the script
