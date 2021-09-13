@@ -7,3 +7,14 @@ fyi: Terminal tells us the interpreter route if we type: which bash
 
 RUN SCRIPTS 
 bash scriptname.sh = this will run the script
+Tip: move the script to ~/bin (if the folder does not exist, create it)
+mv ~/Desktop/backup.sh ~/bin
+Tip2: Rename the script: mv backup.sh backup 
+Allow a file to be executed as a script: 
+1)chmod +x backup   - this means: change mode - add the execute option
+2)nano .bashrc
+3)Add a new line at the end: PATH:"$PATH:$HOME/bin"
+
+What is a different between an alias and a bash script?
+Aliases can be just one-liners
+Scripts can be more comples and scheduled to run by Cron
