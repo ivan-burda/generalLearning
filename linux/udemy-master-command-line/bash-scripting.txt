@@ -18,3 +18,21 @@ Allow a file to be executed as a script:
 What is a different between an alias and a bash script?
 Aliases can be just one-liners
 Scripts can be more comples and scheduled to run by Cron
+
+CRON - Scheduling script runs 
+crontab -e  = e means "edit"
+Select: 1 = nano 
+Change the editor: edit the ~/.selected_editor file, or run the command: select-editor
+
+
+* = every 
+m = 0-59; can be also multiple values, e.g.: 0,15,30,5,59; */15 = every 15 minutes
+h = hour, 0-23
+dom = day of the months, 1-31; */3 = every 3 days
+mon = 1-12, or JAN-DEC
+dow = day of the week, 0-6; MON-SUN
+command
+
+More cron guidance: https://crontab.guru/
+
+To avoid any hassle, just make sure to follow the video exactly, and put the backup script into your ~/bin folder with execution permissions (chmod +x backup)
