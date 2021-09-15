@@ -215,3 +215,6 @@ sudo find / -maxdepth 4 -type f -size +1M -exec ls -lh {} \;
 sudo find / -maxdepth 4 -type f -size +1M -exec ls -lh {} \; | sort -k 5nr > filesizes.txt 
 
 
+MASTERING OPEN SOURCE 
+uname -o   = returns the name of the system running
+
