@@ -70,6 +70,8 @@ nano mynewtextfile.txt = creates a new file
 nano myexistingfile.txt = opens an existing file 
 sudo nano /etc/nanorc = editing nano settings; this requires admin rights therefore sudo 
 
+Go to line: ctrl+shift+_  (_ is next to zero)
+
 =======LOCATE
 sudo apt install locate 
 sudo apt install mlocate 
@@ -214,7 +216,9 @@ sudo find / -maxdepth 4 -type f -size +1M
 sudo find / -maxdepth 4 -type f -size +1M -exec ls -lh {} \;
 sudo find / -maxdepth 4 -type f -size +1M -exec ls -lh {} \; | sort -k 5nr > filesizes.txt 
 
-
-MASTERING OPEN SOURCE 
+===================================================
+=======MASTERING OPEN SOURCE 
 uname -o   = returns the name of the system running
+
+sudo apt-get install gcc  = install gnu C compiler 
 
