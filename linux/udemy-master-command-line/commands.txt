@@ -225,3 +225,7 @@ lsb_release -a = returns the release version of the system running
 
 sudo apt-get install gcc  = install gnu C compiler 
 
+apt-cache search docx = will serach software able to deal with docx files 
+apt-cache search docx | grep text = will filter the results and show only those containing the word "text"
+
+apt-cache show docx2txt | less = request details information about a specific package
