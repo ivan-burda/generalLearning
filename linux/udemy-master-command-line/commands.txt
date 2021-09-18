@@ -218,7 +218,10 @@ sudo find / -maxdepth 4 -type f -size +1M -exec ls -lh {} \; | sort -k 5nr > fil
 
 ===================================================
 =======MASTERING OPEN SOURCE 
+sudo apt = apt means "advanced packaging tool"
+
 uname -o   = returns the name of the system running
+lsb_release -a = returns the release version of the system running
 
 sudo apt-get install gcc  = install gnu C compiler 
 
