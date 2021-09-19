@@ -6,6 +6,9 @@ man 1 ls -> opens the manual page about any of the terms returned by the search
 
 xargs -> converts a standard output into a command parameter so that it can be consumed by a piped comand which does not accept standard outputs but only command line arguments
 
+Tip: 
+xman = a graphical program for viewing the man pages
+
 Task1: 
 ls /etc 1> file1.txt 
 ls /run 1> file2. txt 
@@ -229,3 +232,18 @@ apt-cache search docx = will serach software able to deal with docx files
 apt-cache search docx | grep text = will filter the results and show only those containing the word "text"
 
 apt-cache show docx2txt | less = request details information about a specific package
+
+Updating sw on the system:
+1. step: sudo apt-get update = a manual update of the packages cache  
+2. step: sudo apt-get upgrade = will update all software on the computer within ubuntu
+
+Install new software: 
+sudo apt-get install myPackageName
+
+Uninstall software: 
+sudo apg-get remove myPackageName  = removes a package, however, does not remove config files etc 
+sudo apt-get purge myPackageName = removes a packged AND also its configuration files; ALWAYS use this way 
+sudo apt-get autoremove  = removes from the computer dependency packages not needed for any other install software 
+sudo apt-get autoclean = removes unnecessary package archives in /var/cahce/apt/archives
+
+
