@@ -1,1 +1,9 @@
-console.log("Your code goes here all the way :-)");
+const person: {
+  name: string;
+  age: number;
+} = {
+  name: "Maxmilian",
+  age: 30,
+};
+
+console.log(person.nickname);

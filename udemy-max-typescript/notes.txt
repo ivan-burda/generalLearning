@@ -1,0 +1,2 @@
+CORE TYPES
+number, string, boolean, 
