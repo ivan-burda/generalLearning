@@ -1,2 +1,3 @@
 CORE TYPES
-number, string, boolean, 
+number, string, boolean, object, array, tuple 
+tuple = an array with a fix length and element type
