@@ -1,1 +1,5 @@
-Compile a file: tsc myfile.js
+Compile a file: tsc myfile.ts
+Watch a file and autocompile: tsc myfile.ts -w    // or --watch
+
+Watching changes to all files in a directory and any subdirectories 
+tsc --init  // run this in the main directory; the command initializes the ts project in the directory 

@@ -1,46 +1,20 @@
-// We can specify types within an object and even within an deeper object, however, typescript is able to understand the expect types from the declaration if we assign a value right away
-// const myperson: {
-//   name: string;
-//   age: number;
-//   hobbies: string[];
-//   various: any[];
-// } = {
-//   name: "Maxmilian",
-//   age: 30,
-//   hobbies: ["Sports", "Cooking"],
-//  various: ['TV', 5]
-// }
+let userInput: unknown;
+let userName: string;
 
-// string[] = an array of strings
+userInput = 5;
+userInput = "Max";
 
-// const person: {
-//   name: string;
-//   age: number;
-//   hobbies: string[]; //number[]
-//   role: [number, string]; //this specifies a tuple: an array with a specific length and item types. Controls when we want to assign or re-asign items in the array (tuple); however by using .push() we would still be able to insert more elements - typescript does not catch this
-// } = {
-//   name: "Maxmilian",
-//   age: 30,
-//   hobbies: ["Sports", "Cooking"],
-//   role: [2, "author"],
-// };
-
-enum Role {
-  ADMIN,
-  READ_ONLY,
-  AUTHOR,
+//If I user 'unknown' for as a type, because I do not know the type of value which will be assigned, however I want to be a bit more restrictive than just using 'any', then I need an additional check us as below;
+if (typeof userInput === "string") {
+  userName = userInput;
 }
 
-const person = {
-  name: "Maxmilian",
-  age: 30,
-  hobbies: ["Sports", "Cooking"],
-  role: 4,
-};
-
-console.log(person.name);
-
-for (const hobby of person.hobbies) {
-  console.log(hobby.toUpperCase()); //Here typescript knows hobby is definitely a string so it can even suggest available methods for a string which makes writing code easier
-  //console.log(hobby.map()); //here typescript correctly complains that map() is not a method of a string
+//'never' means the function does not ever return anything, it rather returns and error which breaks the script
+function generateError(message: string, code: number): never {
+  throw {
+    message: message,
+    errorCode: code,
+  };
 }
+
+generateError("Error occured", 500);
