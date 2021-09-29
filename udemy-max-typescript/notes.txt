@@ -1,3 +1,13 @@
 CORE TYPES
 number, string, boolean, object, array, tuple, enum
 tuple = an array with a fix length and element type
+
+
+CLASSES 
+private - makes a property of a class accessible only from inside of it
+readyonly - make a property a read only 
+private readonly - combines both
+
+protected - keeps a property still private, however, unlike 'private' allows it to be accesses by inheriting classes
+
+getters - can be used to acces a class property (even a private one!) via a class getter method
