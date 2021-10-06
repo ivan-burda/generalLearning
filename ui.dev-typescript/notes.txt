@@ -1,0 +1,4 @@
+Unknown vs any
+- use unknown instead of any when you do not know what type will be used 
+- use type narrowing  "typeof === " to narrow done the types and based on the type trigger an action compatible with that type 
+
