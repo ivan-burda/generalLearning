@@ -15,3 +15,4 @@ getters - can be used to acces a class property (even a private one!) via a clas
 
 Type casting = as  ... 
 Type narrowing = type of 
+Union types: string | nunber | boolean   ... etc 
