@@ -1,0 +1,3 @@
+Install typescript: 
+Install @types/react
+Install @types/react-dom
