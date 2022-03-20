@@ -1,5 +1,4 @@
 function sameFrequency(number1, number2) {
-    if()
     //An object which represents digits in number1 and their counts
     let numberOneDigits = {};
 
