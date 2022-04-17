@@ -40,3 +40,7 @@ class Creator {
 
     }
 }
+
+//The client
+const product = Creator.createObject('a');
+console.log(product.name);
