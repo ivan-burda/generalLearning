@@ -1,0 +1,11 @@
+Chrome -> Remote devices:
+chrome://inspect/#devices
+
+Open on the remote device an app running on my computer localhost
+-npx localtunnel --port 3000
+-the 3000 should be replaced by the localhost port on my computer, e.g. 8080
+-open the generated link on the remote device
+-pass in public ip of the computer where the localhost is running and the link got generated
+-ref: https://saltares.com/how-to-test-and-debug-your-localhost-web-app-on-a-real-android-device/
+
+
