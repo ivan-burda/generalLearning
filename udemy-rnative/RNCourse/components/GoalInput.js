@@ -18,6 +18,7 @@ export const GoalInput = ({ onAddGoal, onCancel, visible }) => {
     setEnteredGoalText("");
   }
 
+  console.log("hello");
   return (
     <Modal visible={visible} animationType="slide">
       <View style={styles.inputContainer}>
