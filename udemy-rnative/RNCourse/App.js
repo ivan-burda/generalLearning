@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button, FlatList, StyleSheet, View } from "react-native";
 import { GoalItem } from "./components/GoalItem";
 import { GoalInput } from "./components/GoalInput";
+import { StatusBar } from "expo-status-bar";
 
 export default function App() {
   const [modalIsVisible, setModalIsVisible] = useState(false);
@@ -30,42 +31,46 @@ export default function App() {
   }
 
   return (
-    <View style={styles.appContainer}>
-      <Button
-        title="Add New Goal"
-        color="#5e0acc"
-        onPress={startAddGoalHandler}
-      />
-      <GoalInput
-        onAddGoal={addGoalHandler}
-        onCancel={endAddGoalHandler}
-        visible={modalIsVisible}
-      />
-      <View style={styles.goalsContainer}>
-        <FlatList
-          data={courseGoals}
-          renderItem={(itemData) => (
-            <GoalItem
-              onDeleteItem={deleteGoalHandler}
-              id={itemData.item.id}
-              text={itemData.item.text}
-            />
-          )}
-          keyExtractor={(item, index) => {
-            return item.id;
-          }} // if the source data does not contain 'key' but rather some other unique value, the keyExtractor can do a conversion
-          alwaysBounceVertical={false}
+    <>
+      <StatusBar style={"light"} />
+      <View style={styles.appContainer}>
+        <Button
+          title="Add New Goal"
+          color="#a065ec"
+          onPress={startAddGoalHandler}
         />
+        <GoalInput
+          onAddGoal={addGoalHandler}
+          onCancel={endAddGoalHandler}
+          visible={modalIsVisible}
+        />
+        <View style={styles.goalsContainer}>
+          <FlatList
+            data={courseGoals}
+            renderItem={(itemData) => (
+              <GoalItem
+                onDeleteItem={deleteGoalHandler}
+                id={itemData.item.id}
+                text={itemData.item.text}
+              />
+            )}
+            keyExtractor={(item, index) => {
+              return item.id;
+            }} // if the source data does not contain 'key' but rather some other unique value, the keyExtractor can do a conversion
+            alwaysBounceVertical={false}
+          />
+        </View>
       </View>
-    </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   appContainer: {
+    flex: 1,
     paddingTop: 50,
     paddingHorizontal: 16,
-    flex: 1,
+    backgroundColor: "#1e085a",
   },
   goalsContainer: {
     flex: 5,
