@@ -1,19 +1,49 @@
-import { StyleSheet, ImageBackground, SafeAreaView } from "react-native";
+import { ImageBackground, SafeAreaView, StyleSheet } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+
 import { StartGameScreen } from "./screens/StartGameScreen";
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { GameScreen } from "./screens/GameScreen";
+import { GameOverScreen } from "./screens/GameOverScreen";
 import { Colors } from "./constants/colors";
+
 export default function App() {
   const [userNumber, setUserNumber] = useState(null);
+  const [gameIsOver, setGameIsOver] = useState(true);
+  const [guessRounds, setGuessRounds] = useState(0);
 
   const pickedNumberHandler = (pickedNumber) => {
     setUserNumber(pickedNumber);
+    setGameIsOver(false);
   };
 
   let screen = <StartGameScreen onPickNumber={pickedNumberHandler} />;
+
+  const gameOverHandler = (numberOfRounds) => {
+    setGuessRounds(numberOfRounds);
+    setGameIsOver(true);
+  };
+
+  const startNewGameHandler = () => {
+    setUserNumber(null);
+    setGameIsOver(true);
+    setGuessRounds(0);
+  };
+
   if (userNumber) {
-    screen = <GameScreen userNumber={userNumber} />;
+    screen = (
+      <GameScreen userNumber={userNumber} onGameOver={gameOverHandler} />
+    );
+  }
+
+  if (gameIsOver && userNumber) {
+    screen = (
+      <GameOverScreen
+        userNumber={userNumber}
+        onStartNewGame={startNewGameHandler}
+        roundsNumber={guessRounds}
+      />
+    );
   }
 
   return (
