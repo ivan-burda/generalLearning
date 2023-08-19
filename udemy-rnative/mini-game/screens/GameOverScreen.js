@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   imageContainer: {
-    borderRadius: 300,
+    borderRadius: 150,
     width: deviceWidth < 380 ? 150 : 380,
     height: deviceWidth < 380 ? 150 : 380,
     borderWidth: 3,
