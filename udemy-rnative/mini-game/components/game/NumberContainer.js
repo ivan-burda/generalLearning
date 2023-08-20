@@ -1,11 +1,21 @@
-import { View, Text, StyleSheet, Dimensions } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  useWindowDimensions,
+} from "react-native";
 import { Colors } from "../../constants/colors";
 
-export const NumberContainer = ({ children }) => (
-  <View style={styles.container}>
-    <Text style={styles.numberText}>{children}</Text>
-  </View>
-);
+export const NumberContainer = ({ children }) => {
+  const { width, height } = useWindowDimensions();
+  const marginBottomNumber = height < 380 ? 0 : 12;
+  return (
+    <View style={[styles.container, { marginBottom: marginBottomNumber }]}>
+      <Text style={styles.numberText}>{children}</Text>
+    </View>
+  );
+};
 
 const deviceWidth = Dimensions.get("window").width;
 
