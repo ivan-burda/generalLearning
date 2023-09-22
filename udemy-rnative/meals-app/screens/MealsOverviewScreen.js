@@ -1,7 +1,6 @@
 import { CATEGORIES, MEALS } from "../data/dummy-data";
-import { FlatList, StyleSheet, View } from "react-native";
-import { MealItem } from "../components/MealItem";
 import { useLayoutEffect } from "react";
+import { MealsList } from "../components/MealsList/MealsList";
 
 export const MealsOverviewScreen = ({ route, navigation }) => {
   // const reactRoute = useRoute(); RNative alternative to relying on the "route" passed in as a prop
@@ -20,33 +19,5 @@ export const MealsOverviewScreen = ({ route, navigation }) => {
     });
   }, [catId, navigation]);
 
-  function renderMealItem(itemData) {
-    const item = itemData.item;
-    const mealItemProps = {
-      id: item.id,
-      title: item.title,
-      imageUrl: item.imageUrl,
-      duration: item.duration,
-      complexity: item.complexity,
-      affordability: item.affordability,
-    };
-    return <MealItem {...mealItemProps} />;
-  }
-
-  return (
-    <View style={styles.container}>
-      <FlatList
-        data={displayedMeals}
-        keyExtractor={(item) => item.id}
-        renderItem={renderMealItem}
-      />
-    </View>
-  );
+  return <MealsList items={displayedMeals} />;
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 16,
-  },
-});

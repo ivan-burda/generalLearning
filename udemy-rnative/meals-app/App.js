@@ -7,6 +7,7 @@ import { MealDetailScreen } from "./screens/MealDetailScreen";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import { FavoritesScreen } from "./screens/FavoritesScreen";
 import { Ionicons } from "@expo/vector-icons";
+import { FavoritesContextProvider } from "./store/context/favorites-context";
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -56,47 +57,49 @@ export default function App() {
   return (
     <>
       <StatusBar style="light" />
-      <NavigationContainer>
-        <Stack.Navigator
-          initialRouteName="MealsCategories"
-          screenOptions={{
-            headerStyle: { backgroundColor: "#351401" },
-            headerTintColor: "white",
-            contentStyle: {
-              backgroundColor: "#3f2f35",
-            },
-          }}
-        >
-          <Stack.Screen
-            name="MealsCategories"
-            component={DrawerNavigator}
-            options={{
-              headerShown: false,
+      <FavoritesContextProvider>
+        <NavigationContainer>
+          <Stack.Navigator
+            initialRouteName="MealsCategories"
+            screenOptions={{
+              headerStyle: { backgroundColor: "#351401" },
+              headerTintColor: "white",
+              contentStyle: {
+                backgroundColor: "#3f2f35",
+              },
             }}
-          />
-          <Stack.Screen
-            name="MealsOverview"
-            component={MealsOverviewScreen}
-            // options={({ route, navigation }) => {
-            //   const catId = route.params.categoryId;
-            //   return {
-            //     title: catId,
-            //   };
-            // }}
-          />
-          <Stack.Screen
-            name="MealDetail"
-            component={MealDetailScreen}
-            //A way to add a component to the header if you dont need direct interaction with the related screen
-            options={{
-              title: "About the meal",
-              // headerRight: () => {
-              //   return <Button title="Tap me" />;
-              // },
-            }}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+          >
+            <Stack.Screen
+              name="MealsCategories"
+              component={DrawerNavigator}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="MealsOverview"
+              component={MealsOverviewScreen}
+              // options={({ route, navigation }) => {
+              //   const catId = route.params.categoryId;
+              //   return {
+              //     title: catId,
+              //   };
+              // }}
+            />
+            <Stack.Screen
+              name="MealDetail"
+              component={MealDetailScreen}
+              //A way to add a component to the header if you dont need direct interaction with the related screen
+              options={{
+                title: "About the meal",
+                // headerRight: () => {
+                //   return <Button title="Tap me" />;
+                // },
+              }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </FavoritesContextProvider>
     </>
   );
 }
