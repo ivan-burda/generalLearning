@@ -19,9 +19,8 @@ export const SignupScreen = () => {
         "User creation failed",
         "Cannot create a new user. Please check entered data and try again",
       );
+      setIsAuthenticating(false);
     }
-
-    setIsAuthenticating(false);
   }
 
   if (isAuthenticating) {

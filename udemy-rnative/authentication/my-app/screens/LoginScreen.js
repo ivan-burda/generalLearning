@@ -18,8 +18,8 @@ export const LoginScreen = () => {
         "Authentication failed",
         "Cannot login. Please check credentials",
       );
+      setIsAuthenticating(false);
     }
-    setIsAuthenticating(false);
   }
 
   if (isAuthenticating) {
