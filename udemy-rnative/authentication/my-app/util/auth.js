@@ -22,3 +22,6 @@ export const createUser = (email, password) => {
 export const loginUser = (email, password) => {
   return authenticate("signInWithPassword", email, password);
 };
+
+// bi@gmail.com
+// ABC123456
