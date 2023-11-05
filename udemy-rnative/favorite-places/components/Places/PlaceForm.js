@@ -22,11 +22,7 @@ export const PlaceForm = () => {
     setPickedLocation(location);
   }, []);
 
-  function savePlaceHandler() {
-    console.log(enteredTitle);
-    console.log(selectedImage);
-    console.log(pickedLocation);
-  }
+  function savePlaceHandler() {}
 
   return (
     <ScrollView style={styles.form}>
