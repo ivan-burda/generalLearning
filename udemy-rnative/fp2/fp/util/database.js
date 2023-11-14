@@ -1,26 +1,26 @@
-import * as SQLite from "expo-sqlite";
+import * as SQLite from 'expo-sqlite';
 
-const database = SQLite.openDatabase("places.db");
+const database = SQLite.openDatabase('places.db');
 
 export function init() {
   const promise = new Promise((resolve, reject) => {
     database.transaction((tx) => {
       tx.executeSql(
         `CREATE TABLE IF NOT EXISTS places (
-        id INTEGER PRIMARY KEY NOT NULL,
-        title TEXT NOT NULL,
-        imageUri TEXT NOT NULL,
-        address TEXT NOT NULL,
-        lat REAL NOT NULL,
-        lng REAL NOT NULL
-    )`,
+          id INTEGER PRIMARY KEY NOT NULL,
+          title TEXT NOT NULL,
+          imageUri TEXT NOT NULL,
+          address TEXT NOT NULL,
+          lat REAL NOT NULL,
+          lng REAL NOT NULL
+        )`,
         [],
         () => {
           resolve();
         },
         (_, error) => {
           reject(error);
-        },
+        }
       );
     });
   });
@@ -28,7 +28,7 @@ export function init() {
   return promise;
 }
 
-export const insertPlace = (place) => {
+export function insertPlace(place) {
   const promise = new Promise((resolve, reject) => {
     database.transaction((tx) => {
       tx.executeSql(
@@ -41,15 +41,14 @@ export const insertPlace = (place) => {
           place.location.lng,
         ],
         (_, result) => {
-          console.log(result);
           resolve(result);
         },
         (_, error) => {
           reject(error);
-        },
+        }
       );
     });
   });
 
   return promise;
-};
+}
