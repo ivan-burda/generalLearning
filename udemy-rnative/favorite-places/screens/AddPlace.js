@@ -4,7 +4,7 @@ import { insertPlace } from "../util/database";
 export const AddPlace = ({ navigation }) => {
   async function createPlaceHandler(place) {
     await insertPlace(place);
-
+    console.log("im here");
     //keeping this here just for ref; data will not be any longer passed via nav params, but rather loaded from DB
     // navigation.navigate("AllPlaces", {
     //   place: place,
