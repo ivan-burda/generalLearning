@@ -10,6 +10,7 @@ import { Map } from "./screens/Map";
 const Stack = createNativeStackNavigator();
 import { useEffect, useState, useCallback } from "react";
 import { init } from "./util/database";
+import { PlaceDetails } from "./screens/PlaceDetails";
 
 export default function App() {
   const [dbInitialized, setDbInitialized] = useState(false);
@@ -71,6 +72,7 @@ export default function App() {
             options={{ title: "Add New Place" }}
           />
           <Stack.Screen name={"Map"} component={Map} />
+          <Stack.Screen name={"PlaceDetails"} component={PlaceDetails} />
         </Stack.Navigator>
       </NavigationContainer>
     </>
