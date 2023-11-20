@@ -34,6 +34,12 @@
           "color": "#ffffff"
         }
       ]
-    ]
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "1f8c7ef3-cffd-43e7-99c3-bd2f6f78b417"
+      }
+    },
+    "owner": "viqtorione"
   }
 }

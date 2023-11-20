@@ -1,7 +1,8 @@
 import { StatusBar } from "expo-status-bar";
-import { Button, StyleSheet, View } from "react-native";
+import { Alert, Button, StyleSheet, View, Platform } from "react-native";
 import * as Notifications from "expo-notifications";
 import { useEffect } from "react";
+import Constants from "expo-constants";
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
@@ -32,12 +33,45 @@ const requestPermissionsAsync = async () => {
 
 export default function App() {
   useEffect(() => {
+    async function configurePushNotifications() {
+      const projectId = Constants.expoConfig.extra.eas.projectId;
+      console.log(projectId);
+
+      const { status } = await Notifications.getExpoPushTokenAsync({
+        projectId: projectId,
+      });
+      let finalStatus = status;
+      if (finalStatus !== "granted") {
+        const { status } = await Notifications.requestPermissionsAsync();
+        finalStatus = status;
+      }
+      if (finalStatus !== "granted") {
+        Alert.alert(
+          "Permission required",
+          "Push notifications need a permission",
+        );
+        return;
+      }
+      const pushToken = await Notifications.getExpoPushTokenAsync({
+        projectId: projectId,
+      });
+      console.log(pushToken);
+
+      if (Platform.OS === "android") {
+        Notifications.setNotificationChannelAsync("default", {
+          name: "default",
+          importance: Notifications.AndroidImportance.DEFAULT,
+        });
+      }
+    }
+
+    configurePushNotifications();
+  }, []);
+
+  useEffect(() => {
     const subscription1 = Notifications.addNotificationReceivedListener(
       (notification) => {
-        // console.log('NOTIFICATION RECEIVED');
-        // console.log(notification);
         const userName = notification.request.content.data.userName;
-        // console.log(userName);
       },
     );
 
