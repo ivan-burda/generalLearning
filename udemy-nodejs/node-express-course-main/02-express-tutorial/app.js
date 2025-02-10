@@ -1,17 +1,21 @@
 const express = require("express");
-const path = require("path");
 const app = express();
 
-app.use(express.static("./public"));
+const people = require("./routes/people");
+const auth = require("./routes/auth");
 
-app.get("/", (req, res) => {
-  res.sendFile(path.resolve(__dirname, "./navbar-app/index.html"));
-});
+//static assets
+app.use(express.static("./methods-public"));
 
-app.all("*", (req, res) => {
-  res.status(404).send("Not Found");
-});
+//Parse form data
+app.use(express.urlencoded({ extended: false }));
+
+//parse json
+app.use(express.json());
+
+app.use("/api/people", people);
+app.use("/login", auth);
 
 app.listen(3000, () => {
-  console.log("Server started on port 3000!");
+  console.log("Server running on port 3000");
 });
