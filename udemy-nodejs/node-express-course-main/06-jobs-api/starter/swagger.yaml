@@ -1,0 +1,239 @@
+openapi: 3.0.0
+info:
+  title: jobs-API
+  contact: {}
+  version: '1.0'
+servers:
+  - url: https://nodejs-jobs-api-mskf.onrender.com/api/v1
+    variables: {}
+paths:
+  /auth/register:
+    post:
+      tags:
+        - Auth
+      summary: '{{URL}}/auth/register'
+      operationId: '{{URL}}/auth/register'
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/URLauthregisterRequest'
+                - example:
+                    name: ' milan'
+                    email: milan@gmail.com
+                    password: password
+            example:
+              name: ' milan'
+              email: milan@gmail.com
+              password: password
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      summary: '{{URL}}/auth/login'
+      operationId: '{{URL}}/auth/login'
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/URLauthloginRequest'
+                - example:
+                    email: ivanb@gmail.com
+                    password: password
+            example:
+              email: ivanb@gmail.com
+              password: password
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security: []
+  /jobs:
+    post:
+      tags:
+        - jobs
+      summary: '{{URL}}/jobs'
+      operationId: '{{URL}}/jobs'
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/URLjobsRequest'
+                - example:
+                    company: alphabet
+                    position: manager
+            example:
+              company: alphabet
+              position: manager
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+    get:
+      tags:
+        - jobs
+      summary: '{{URL}}/jobs'
+      operationId: Get{{URL}}/jobs
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+  /jobs/{id}:
+    parameters:
+      - in: path
+        name: id
+        schema:
+          type: string
+        required: true
+        description: The job ID
+    get:
+      tags:
+        - jobs
+      summary: '{{URL}}/jobs/id'
+      operationId: '{{URL}}/jobs/id'
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+    patch:
+      tags:
+        - jobs
+      summary: '{{URL}}/jobs/id'
+      operationId: Patch{{URL}}/jobs/id
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/URLjobsidRequest'
+                - example:
+                    company: amway
+                    position: test engineer
+            example:
+              company: amway
+              position: test engineer
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+    delete:
+      tags:
+        - jobs
+      summary: '{{URL}}/jobs/id1'
+      operationId: '{{URL}}/jobs/id1'
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+      security:
+        - bearer: []
+components:
+  schemas:
+    URLauthregisterRequest:
+      title: URLauthregisterRequest
+      required:
+        - name
+        - email
+        - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        name: ' milan'
+        email: milan@gmail.com
+        password: password
+    URLauthloginRequest:
+      title: URLauthloginRequest
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: ivanb@gmail.com
+        password: password
+    URLjobsRequest:
+      title: URLjobsRequest
+      required:
+        - company
+        - position
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+      example:
+        company: alphabet
+        position: manager
+    URLjobsidRequest:
+      title: URLjobsidRequest
+      required:
+        - company
+        - position
+      type: object
+      properties:
+        company:
+          type: string
+        position:
+          type: string
+      example:
+        company: amway
+        position: test engineer
+  securitySchemes:
+    bearer:
+      type: http
+      scheme: bearer
+security: []
+tags:
+  - name: Auth
+    description: ''
+  - name: jobs
+    description: ''
